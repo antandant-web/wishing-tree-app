@@ -1,0 +1,2861 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>心願繪馬・魔法樹洞 — 許願・日記・還願療癒空間</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #0f141c;
+      --bg-card: #18202c;
+      --wood-light: #e6c89c;
+      --wood-mid: #cfa368;
+      --wood-dark: #8c5e2a;
+      --shrine-red: #c83e31;
+      --gold-accent: #f3c663;
+    }
+    body {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 55%, #090d16 100%);
+      color: #f1f5f9;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .serif-title {
+      font-family: 'Noto Serif TC', serif;
+    }
+    /* Flat Line Owl Welcome Animation */
+    @keyframes owlFlyAway {
+      0% {
+        transform: translate(-120px, 60px) scale(0.92) rotate(-4deg);
+        opacity: 0;
+      }
+      15% {
+        transform: translate(-40px, 25px) scale(1) rotate(0deg);
+        opacity: 1;
+      }
+      55% {
+        transform: translate(35px, -18px) scale(1.02) rotate(-6deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(260px, -150px) scale(0.75) rotate(-14deg);
+        opacity: 0;
+      }
+    }
+    @keyframes owlWingFlap {
+      0%, 100% {
+        transform: scaleY(1) rotate(0deg);
+      }
+      50% {
+        transform: scaleY(0.55) rotate(-8deg);
+      }
+    }
+    @keyframes dashTrail {
+      0% {
+        stroke-dashoffset: 180;
+        opacity: 0.2;
+      }
+      50% {
+        opacity: 0.85;
+      }
+      100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+      }
+    }
+    .owl-flight-carrier {
+      animation: owlFlyAway 2.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    .owl-wing-anim {
+      transform-origin: 110px 95px;
+      animation: owlWingFlap 0.42s ease-in-out infinite;
+    }
+    .owl-trail-line {
+      stroke-dasharray: 8 8;
+      animation: dashTrail 2.8s ease-out forwards;
+    }
+    /* Wooden Ema Plaque Shape */
+    .ema-plaque {
+      clip-path: polygon(50% 0%, 100% 22%, 100% 100%, 0% 100%, 0% 22%);
+      background: linear-gradient(165deg, #f3dfc1 0%, #e2be8a 60%, #cf9f60 100%);
+      color: #3b2313;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), inset 0 2px 6px rgba(255,255,255,0.6);
+      position: relative;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    }
+    .ema-plaque:hover {
+      transform: translateY(-6px) rotate(1deg);
+      box-shadow: 0 18px 32px -5px rgba(243, 198, 99, 0.28);
+    }
+    .ema-plaque-diary {
+      clip-path: polygon(50% 0%, 100% 22%, 100% 100%, 0% 100%, 0% 22%);
+      background: linear-gradient(165deg, #e0e7ff 0%, #c7d2fe 60%, #a5b4fc 100%);
+      color: #1e1b4b;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), inset 0 2px 6px rgba(255,255,255,0.7);
+    }
+    .ema-plaque-fulfilled {
+      clip-path: polygon(50% 0%, 100% 22%, 100% 100%, 0% 100%, 0% 22%);
+      background: linear-gradient(165deg, #fef08a 0%, #facc15 55%, #eab308 100%);
+      color: #422006;
+      box-shadow: 0 10px 28px -4px rgba(250, 204, 21, 0.4), inset 0 2px 8px rgba(255,255,255,0.8);
+    }
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-5px) rotate(1.2deg); }
+    }
+    .ema-sway {
+      animation: floatSlow 4.5s ease-in-out infinite;
+    }
+    .ema-sway:nth-child(even) {
+      animation-delay: 1.5s;
+      animation-duration: 5.2s;
+    }
+    .ema-sway:nth-child(3n) {
+      animation-delay: 0.7s;
+      animation-duration: 4.8s;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+  </style>
+</head>
+<body class="selection:bg-amber-500/30 selection:text-amber-200">
+
+  <!-- Welcome Overlay Animation: Minimalist Flat-Line Owl Carrying a Letter Flying Away -->
+  <div id="welcomeOwlOverlay" class="fixed inset-0 z-50 bg-[#0b101b]/95 backdrop-blur-md flex flex-col items-center justify-center p-6 transition-opacity duration-500">
+    <div class="max-w-md w-full text-center space-y-5">
+      <!-- Flat Line Art SVG Container -->
+      <div class="relative w-full h-56 flex items-center justify-center overflow-hidden">
+        <svg class="w-80 h-56" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Minimalist Flat-Line Crescent Moon & Stars -->
+          <path d="M255 38C247 42 242 51 244 61C246 71 255 77 265 76C256 83 243 81 236 72C229 63 231 49 240 42C244 39 250 38 255 38Z" stroke="#fcd34d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.7" />
+          <path d="M62 48L62 56M58 52L66 52" stroke="#cbd5e1" stroke-width="1.8" stroke-linecap="round" opacity="0.6" />
+          <path d="M210 115L210 121M207 118L213 118" stroke="#fcd34d" stroke-width="1.8" stroke-linecap="round" opacity="0.6" />
+
+          <!-- Flight Wind Trail (Flat Dashed Line) -->
+          <path class="owl-trail-line" d="M35 165 Q 125 135 225 75" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" fill="none" />
+
+          <!-- Animated Flat-Line Owl Carrying an Envelope in its Beak -->
+          <g id="owlAnimatedGroup" class="owl-flight-carrier">
+            <!-- Owl Body -->
+            <path d="M88 92 C88 70, 128 70, 128 92 L124 128 C124 136, 92 136, 92 128 Z" fill="#0f172a" stroke="#f8fafc" stroke-width="2.5" stroke-linejoin="round" />
+            <!-- Owl Ears / Brow Line -->
+            <path d="M85 74 L96 82 L108 78 L120 82 L131 74" stroke="#f8fafc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+            <!-- Owl Eyes -->
+            <circle cx="99" cy="91" r="6.5" stroke="#f8fafc" stroke-width="2.2" fill="#0f172a" />
+            <circle cx="99" cy="91" r="2.2" fill="#fbbf24" />
+            <circle cx="117" cy="91" r="6.5" stroke="#f8fafc" stroke-width="2.2" fill="#0f172a" />
+            <circle cx="117" cy="91" r="2.2" fill="#fbbf24" />
+            <!-- Owl Beak -->
+            <path d="M105 96 L108 103 L111 96 Z" fill="#fbbf24" stroke="#fbbf24" stroke-width="1.5" stroke-linejoin="round" />
+
+            <!-- Belly Feather Flat Lines -->
+            <path d="M101 113 Q104 116 107 113 M110 113 Q113 116 116 113 M105 120 Q108 123 111 120" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" fill="none" />
+
+            <!-- Flapping Wing -->
+            <g class="owl-wing-anim">
+              <path d="M95 96 C66 80, 56 102, 82 115 C92 119, 100 112, 102 104" fill="#1e293b" stroke="#f8fafc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M72 99 L88 104" stroke="#cbd5e1" stroke-width="1.8" stroke-linecap="round" />
+            </g>
+
+            <!-- Tail Feathers & Feet -->
+            <path d="M90 128 L82 136 L94 134 L89 140 L100 134" stroke="#f8fafc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M104 133 L102 139 M112 133 L114 139" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round" />
+
+            <!-- Letter / Envelope Held in Beak -->
+            <g transform="translate(106, 101) rotate(12)">
+              <rect x="0" y="0" width="38" height="25" rx="3" fill="#1e293b" stroke="#fde68a" stroke-width="2.2" />
+              <path d="M1 2 L19 14 L37 2" stroke="#fde68a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="19" cy="13" r="3" fill="#f43f5e" />
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <div class="space-y-2">
+        <div id="welcomeOwlTitle" class="serif-title text-lg sm:text-xl font-bold text-amber-200 tracking-wide">
+          信使貓頭鷹已銜起信件，準備為你傳遞心意…
+        </div>
+        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+          免登錄・100% 私密本機空間（別人點開網址看不到你的記錄）<br>
+          本應用僅供娛樂與自我安慰參考，非真實向神明許願儀式
+        </p>
+      </div>
+
+      <div>
+        <button type="button" id="skipWelcomeOwlBtn" class="px-5 py-2 rounded-full bg-slate-800/90 hover:bg-slate-700 border border-slate-600 text-xs text-slate-200 transition">
+          進入許願樹與樹洞空間 →
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Header & 2-Page Navigation Bar -->
+  <header class="border-b border-slate-800/80 bg-slate-900/75 relative z-20">
+    <div class="max-w-5xl mx-auto px-4 py-4 flex flex-col md:flex-row flex-wrap items-center justify-center md:justify-between text-center md:text-left gap-3.5">
+      <!-- Brand -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-2.5">
+        <div class="w-10 h-10 rounded-2xl bg-slate-800 border border-amber-400/40 flex items-center justify-center text-xl shadow-inner">
+          🦉
+        </div>
+        <div class="text-center sm:text-left">
+          <h1 class="serif-title text-lg sm:text-xl font-bold tracking-wide text-amber-200">
+            心願繪馬・魔法樹洞
+          </h1>
+          <p class="text-[11px] text-slate-400">私密許願・魔法儀式・樹洞日記・還願</p>
+        </div>
+      </div>
+
+      <!-- Primary 2-Page Switcher -->
+      <nav class="flex items-center justify-center bg-slate-950 p-1 rounded-2xl border border-slate-800" aria-label="主要頁面切換">
+        <button type="button" id="navPageWriteBtn" class="px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 bg-amber-500 text-slate-950 shadow">
+          <span>✍️</span>
+          <span>許願・日記・還願</span>
+        </button>
+        <button type="button" id="navPageRecordsBtn" class="px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 text-slate-300 hover:text-white">
+          <span>🌳</span>
+          <span>我的許願樹與記錄</span>
+          <span id="navRecordsCountPill" class="px-1.5 py-0.2 rounded-full text-[11px] bg-slate-800 text-amber-300">0</span>
+        </button>
+      </nav>
+
+      <!-- Utility Controls -->
+      <div class="flex items-center justify-center gap-2">
+        <button type="button" id="replayOwlBtn" class="px-2.5 py-1.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-xs text-slate-200 transition" title="重播貓頭鷹送信歡迎動畫">
+          🦉 動畫
+        </button>
+        <button type="button" id="toggleAudioBtn" class="px-2.5 py-1.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-xs text-slate-200 flex items-center gap-1 transition">
+          <span id="audioIcon">🔔</span>
+          <span id="audioLabel" class="hidden sm:inline">療癒音效：開啟</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Sites Third-Party Storage Warning Callout (Shown only if strict iframe blocking is detected) -->
+  <div id="iframeStorageWarningBanner" class="hidden max-w-5xl mx-auto px-4 pt-4">
+    <div class="rounded-2xl bg-amber-950/90 border border-amber-500/50 p-3.5 flex flex-wrap items-center justify-between gap-3 text-xs text-amber-100">
+      <div class="flex items-center gap-2.5">
+        <span class="text-lg">🛡️</span>
+        <span>偵測到您正在嵌入式網頁（如 Google Sites）中瀏覽。為確保跨網域重新整理不遺失記錄，請點擊右側按鈕授權瀏覽器嵌入儲存，或使用「📦 備份／救援碼」。</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <button type="button" id="grantStorageAccessBtn" class="px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition">
+          🔓 啟用嵌入頁面持久儲存
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Container -->
+  <main class="max-w-5xl mx-auto px-4 py-6">
+
+    <!-- ===================================================================== -->
+    <!-- PAGE 1: 許願 / 日記 / 還願 書寫區 (Clean, Focused Single-Column Page) -->
+    <!-- ===================================================================== -->
+    <div id="pageViewWrite" class="max-w-2xl mx-auto space-y-5">
+
+      <!-- Creation Card -->
+      <section class="bg-slate-900/90 border border-slate-800 rounded-3xl p-5 sm:p-7 shadow-xl space-y-5">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3.5">
+          <h2 class="serif-title text-lg sm:text-xl font-bold text-amber-200 flex items-center gap-2">
+            <span>✍️</span>
+            <span>撰寫心願・日記・還願</span>
+          </h2>
+          <button type="button" id="quickGoRecordsBtn" class="shrink-0 text-xs sm:text-sm text-amber-300 hover:text-amber-200 underline font-medium transition">
+            查看我的記錄 →
+          </button>
+        </div>
+
+        <!-- 3 Mode Tabs: 許願 (Wish) / 日記 (Diary) / 還願 (Fulfill/Gratitude) -->
+        <div class="grid grid-cols-3 gap-2 bg-slate-950 p-1.5 rounded-2xl border border-slate-800" role="tablist">
+          <button type="button" id="tabBtnWish" data-mode="wish" class="mode-tab-btn py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-1.5 bg-amber-500 text-slate-950 shadow">
+            <span>🎋</span>
+            <span>許願祈福</span>
+          </button>
+          <button type="button" id="tabBtnDiary" data-mode="diary" class="mode-tab-btn py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-1.5 text-slate-300 hover:text-white">
+            <span>🌳</span>
+            <span>樹洞日記</span>
+          </button>
+          <button type="button" id="tabBtnFulfill" data-mode="fulfill" class="mode-tab-btn py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-1.5 text-slate-300 hover:text-white">
+            <span>🙏</span>
+            <span>還願感謝</span>
+          </button>
+        </div>
+
+        <!-- Mode Description Callout -->
+        <div id="modeDescriptionBox" class="rounded-2xl bg-amber-500/10 border border-amber-500/25 p-3.5 text-xs sm:text-sm text-amber-100/90 leading-relaxed">
+          選擇傾訴對象與許願方式（可掛上神社繪馬，或進行月桂葉焚燒、撒鹽、撒肉桂粉、撒羅勒葉等西洋草藥魔法儀式）。
+        </div>
+
+        <!-- Form Starts -->
+        <form id="entryForm" class="space-y-5">
+
+          <!-- Step 1: Target Selector -->
+          <div>
+            <label class="block text-xs sm:text-sm font-medium text-slate-300 mb-2">
+              1. 選擇傾訴／祈願對象 <span id="targetCategoryHint" class="text-amber-400 text-xs">（宇宙 / 大天使 / 佛主 / 財神）</span>
+            </label>
+            <div id="targetSelectorGrid" class="grid grid-cols-2 gap-2.5">
+              <!-- Populated by JS based on current mode -->
+            </div>
+          </div>
+
+          <!-- Conditional Block for Fulfill Mode: Link to an existing Wish -->
+          <div id="fulfillLinkContainer" class="hidden space-y-2 p-3.5 rounded-2xl bg-yellow-500/10 border border-yellow-500/30">
+            <label for="linkedWishSelect" class="block text-xs sm:text-sm font-medium text-yellow-200">
+              🌟 選擇要還願的原許願繪馬（或直接撰寫獨立感謝繪馬）
+            </label>
+            <select id="linkedWishSelect" class="w-full rounded-xl bg-slate-900 border border-yellow-600/40 px-3 py-2 text-xs sm:text-sm text-slate-100 focus:outline-none focus:border-yellow-400">
+              <option value="">✨ 獨立還願感謝（不綁定特定舊繪馬）</option>
+            </select>
+          </div>
+
+          <!-- Conditional Block for Wish Mode: Magic Ritual Selector -->
+          <div id="ritualSelectorContainer" class="space-y-2.5">
+            <label class="block text-xs sm:text-sm font-medium text-slate-300">
+              2. 選擇許願媒介與魔法儀式
+            </label>
+            <div id="ritualOptionsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <button type="button" data-ritual="ema" class="ritual-option-btn text-left p-2.5 rounded-xl border border-amber-400 bg-amber-500/15 transition flex items-start gap-2.5">
+                <span class="text-xl">🪵</span>
+                <div>
+                  <div class="text-xs sm:text-sm font-semibold text-amber-200">神社木繪馬掛樹</div>
+                  <div class="text-[11px] text-slate-400">寫在檜木繪馬上掛於神木隨風祈福</div>
+                </div>
+              </button>
+              <button type="button" data-ritual="bayleaf" class="ritual-option-btn text-left p-2.5 rounded-xl border border-slate-700 bg-slate-800/60 hover:border-slate-600 transition flex items-start gap-2.5">
+                <span class="text-xl">🍃</span>
+                <div>
+                  <div class="text-xs sm:text-sm font-semibold text-slate-200">寫在月桂葉上燒掉 (Bay Leaf)</div>
+                  <div class="text-[11px] text-slate-400">點燃月桂葉化為金光灰燼，釋放並顯化願望</div>
+                </div>
+              </button>
+              <button type="button" data-ritual="salt" class="ritual-option-btn text-left p-2.5 rounded-xl border border-slate-700 bg-slate-800/60 hover:border-slate-600 transition flex items-start gap-2.5">
+                <span class="text-xl">🧂</span>
+                <div>
+                  <div class="text-xs sm:text-sm font-semibold text-slate-200">撒海鹽淨化儀式 (Salt)</div>
+                  <div class="text-[11px] text-slate-400">撒下純白晶鹽掃除阻礙、建立保護結界</div>
+                </div>
+              </button>
+              <button type="button" data-ritual="cinnamon" class="ritual-option-btn text-left p-2.5 rounded-xl border border-slate-700 bg-slate-800/60 hover:border-slate-600 transition flex items-start gap-2.5">
+                <span class="text-xl">🌰</span>
+                <div>
+                  <div class="text-xs sm:text-sm font-semibold text-slate-200">撒肉桂粉豐盛儀式 (Cinnamon)</div>
+                  <div class="text-[11px] text-slate-400">吹拂肉桂金粉，吸引財富、豐盛與熱情</div>
+                </div>
+              </button>
+              <button type="button" data-ritual="basil" class="ritual-option-btn sm:col-span-2 text-left p-2.5 rounded-xl border border-slate-700 bg-slate-800/60 hover:border-slate-600 transition flex items-start gap-2.5">
+                <span class="text-xl">🌿</span>
+                <div>
+                  <div class="text-xs sm:text-sm font-semibold text-slate-200">撒羅勒葉繁榮儀式 (Sweet Basil)</div>
+                  <div class="text-[11px] text-slate-400">撒下翠綠羅勒碎葉，祈求好運、順遂與人際和諧</div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Conditional Block for Diary Mode: Mood Selector -->
+          <div id="diaryMoodContainer" class="hidden space-y-2">
+            <label class="block text-xs sm:text-sm font-medium text-slate-300">
+              2. 今日心境印記
+            </label>
+            <div class="flex flex-wrap gap-2" id="moodOptionsGroup">
+              <button type="button" data-mood="🌙 平靜釋懷" class="mood-btn px-3 py-1.5 rounded-xl text-xs font-medium border border-indigo-400 bg-indigo-500/20 text-indigo-200">🌙 平靜釋懷</button>
+              <button type="button" data-mood="🌧️ 委屈宣洩" class="mood-btn px-3 py-1.5 rounded-xl text-xs font-medium border border-slate-700 bg-slate-800 text-slate-300">🌧️ 委屈宣洩</button>
+              <button type="button" data-mood="🌱 溫柔期許" class="mood-btn px-3 py-1.5 rounded-xl text-xs font-medium border border-slate-700 bg-slate-800 text-slate-300">🌱 溫柔期許</button>
+              <button type="button" data-mood="🔥 焦慮不安" class="mood-btn px-3 py-1.5 rounded-xl text-xs font-medium border border-slate-700 bg-slate-800 text-slate-300">🔥 焦慮不安</button>
+              <button type="button" data-mood="✨ 感恩療癒" class="mood-btn px-3 py-1.5 rounded-xl text-xs font-medium border border-slate-700 bg-slate-800 text-slate-300">✨ 感恩療癒</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Text Content & Optional Signer -->
+          <div class="space-y-3">
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label for="entryContentInput" id="contentInputLabel" class="text-xs sm:text-sm font-medium text-slate-300">
+                  3. 寫下你的心願或傾訴內容
+                </label>
+                <button type="button" id="fillPromptInspirationBtn" class="text-xs text-amber-400 hover:text-amber-300 underline">
+                  ✨ 隨機靈感範例
+                </button>
+              </div>
+              <textarea
+                id="entryContentInput"
+                rows="4"
+                maxlength="500"
+                placeholder="在這裡安心寫下你的願望、秘密或感謝（100% 私密，僅保存在你自己的瀏覽器中）..."
+                class="w-full rounded-2xl bg-slate-950/90 border border-slate-700/80 focus:border-amber-400 focus:outline-none p-3.5 text-sm text-slate-100 placeholder-slate-500 leading-relaxed resize-none"
+                required
+              ></textarea>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label for="entryAuthorInput" class="block text-xs font-medium text-slate-400 mb-1">署名／暱稱（選填，僅自己可見）</label>
+                <input
+                  id="entryAuthorInput"
+                  type="text"
+                  maxlength="24"
+                  placeholder="我自己"
+                  class="w-full rounded-xl bg-slate-950/90 border border-slate-700/80 focus:border-amber-400 focus:outline-none px-3 py-2 text-xs sm:text-sm text-slate-100"
+                />
+              </div>
+
+              <!-- Step 4: Retention / Auto-Delete Selector -->
+              <div>
+                <label for="expirySelect" class="block text-xs font-medium text-amber-300 mb-1">⏳ 自動刪除時間設定</label>
+                <select
+                  id="expirySelect"
+                  class="w-full rounded-xl bg-slate-950/90 border border-amber-500/50 focus:border-amber-400 focus:outline-none px-3 py-2 text-xs sm:text-sm text-amber-100 font-medium"
+                >
+                  <option value="24">24 小時後自動銷毀</option>
+                  <option value="48" selected>48 小時後自動銷毀</option>
+                  <option value="72">72 小時後自動銷毀</option>
+                  <option value="manual">手動刪除（一直保留直到我刪除）</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Magic Ritual Canvas Box -->
+          <div id="magicRitualStageBox" class="rounded-2xl border border-amber-500/40 bg-gradient-to-b from-slate-950 via-[#1a1423] to-slate-950 p-3.5 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <div class="text-xs font-semibold text-amber-300 flex items-center gap-1.5">
+                <span id="ritualStageIcon">🪵</span>
+                <span id="ritualStageTitle">儀式準備台：神社木繪馬</span>
+              </div>
+              <span id="ritualProgressBadge" class="text-[11px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-200 border border-amber-500/30">
+                點擊下方互動區施展儀式
+              </span>
+            </div>
+
+            <div class="relative rounded-xl overflow-hidden border border-slate-800 bg-[#0c0f17] h-44 flex items-center justify-center">
+              <canvas id="ritualCanvas" class="w-full h-full cursor-pointer"></canvas>
+              <div id="ritualCanvasOverlayHint" class="pointer-events-none absolute bottom-2 inset-x-3 text-center text-[11px] text-amber-200/90 bg-slate-950/75 py-1 px-2 rounded-lg border border-amber-500/20">
+                👆 點擊或滑過畫面進行儀式互動（例如：點燃月桂葉、撒鹽、撒肉桂粉、撒羅勒）
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between gap-2">
+              <button type="button" id="performRitualActionBtn" class="flex-1 py-2 px-3 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-amber-200 text-xs font-semibold transition flex items-center justify-center gap-1.5">
+                <span>✨</span>
+                <span id="performRitualActionLabel">在畫布上施展儀式特效</span>
+              </button>
+              <button type="button" id="resetRitualCanvasBtn" class="py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition">
+                重設儀式台
+              </button>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            id="submitEntryBtn"
+            class="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-bold text-sm sm:text-base shadow-lg shadow-amber-500/20 transition transform active:scale-[0.99] flex items-center justify-center gap-2"
+          >
+            <span>⛩️</span>
+            <span id="submitBtnText">封存心願並掛上許願樹</span>
+          </button>
+        </form>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- PAGE 2: 我的許願樹與私人記錄區 (Dedicated View for Tree & Records)      -->
+    <!-- ===================================================================== -->
+    <div id="pageViewRecords" class="hidden space-y-6">
+
+      <!-- Top Bar on Records Page: Back to Write + Time Simulator & Clear Local Data -->
+      <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-900/80 border border-slate-800 rounded-2xl p-3.5">
+        <div class="flex items-center gap-2">
+          <button type="button" id="backToWritePageBtn" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-xs sm:text-sm transition flex items-center gap-1.5">
+            <span>✍️</span>
+            <span>返回許願／寫日記</span>
+          </button>
+          <span class="text-xs text-slate-400 hidden sm:inline">🔒 這裡只會顯示你自己寫下的記錄，別人點開網址看不到</span>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" id="recordsBackupBtn" class="px-3 py-1.5 rounded-xl bg-emerald-950/80 hover:bg-emerald-900/80 border border-emerald-700/50 text-xs text-emerald-200 flex items-center gap-1.5 transition">
+            <span>📦</span>
+            <span>備份／還原記錄</span>
+          </button>
+
+          <button type="button" id="fastForwardBtn" class="px-3 py-1.5 rounded-xl bg-indigo-950/80 hover:bg-indigo-900/80 border border-indigo-700/50 text-xs text-indigo-200 flex items-center gap-1.5 transition" title="模擬時間流逝以測試24/48/72小時自動刪除機制">
+            <span>⏩</span>
+            <span>模擬時間 +12h</span>
+          </button>
+
+          <button type="button" id="resetTimeOffsetBtn" class="hidden px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-xs text-amber-300 transition">
+            重置模擬時間
+          </button>
+
+          <button type="button" id="clearAllStorageBtn" class="px-3 py-1.5 rounded-xl bg-rose-950/70 hover:bg-rose-900/80 border border-rose-700/50 text-xs text-rose-200 flex items-center gap-1.5 transition" title="模擬清除 Cookie 與刪除本地所有記錄">
+            <span>🧹</span>
+            <span>清除本地記錄</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Visual Section: Interactive Wishing Tree & Shrine Ema Rack -->
+      <section class="relative rounded-3xl overflow-hidden border border-amber-500/25 bg-gradient-to-b from-slate-900/90 via-[#151c2c] to-[#111622] shadow-2xl">
+        <div class="h-2.5 bg-gradient-to-r from-red-900 via-amber-600 to-red-900"></div>
+
+        <div class="p-5 sm:p-6">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5">
+            <div>
+              <div class="inline-flex items-center gap-2 text-xs font-medium text-amber-300/90 bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-full mb-1.5">
+                <span>🌳 專屬私人許願樹與繪馬架</span>
+                <span id="simulatedTimeIndicator" class="hidden text-indigo-300 font-semibold"></span>
+              </div>
+              <h2 class="serif-title text-lg sm:text-xl font-bold text-white">點擊掛牌查看詳情，或於下方管理自動刪除倒數</h2>
+            </div>
+
+            <!-- Summary Counters -->
+            <div class="grid grid-cols-4 gap-2 bg-slate-950/60 p-2 rounded-2xl border border-slate-800">
+              <div class="text-center px-2 py-1">
+                <div class="text-[11px] text-slate-400">許願中</div>
+                <div id="statWishCount" class="text-base sm:text-lg font-bold text-amber-300">0</div>
+              </div>
+              <div class="text-center px-2 py-1 border-l border-slate-800">
+                <div class="text-[11px] text-slate-400">已還願</div>
+                <div id="statFulfilledCount" class="text-base sm:text-lg font-bold text-yellow-400">0</div>
+              </div>
+              <div class="text-center px-2 py-1 border-l border-slate-800">
+                <div class="text-[11px] text-slate-400">樹洞日記</div>
+                <div id="statDiaryCount" class="text-base sm:text-lg font-bold text-indigo-300">0</div>
+              </div>
+              <div class="text-center px-2 py-1 border-l border-slate-800">
+                <div class="text-[11px] text-slate-400">總記錄</div>
+                <div id="statTotalCount" class="text-base sm:text-lg font-bold text-emerald-300">0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visual Tree & Hanging Ema Rack Display -->
+          <div class="relative rounded-2xl border border-amber-900/40 bg-gradient-to-b from-[#0d1322] via-[#131d31] to-[#1a1817] p-4 sm:p-5 min-h-[210px] overflow-hidden">
+            <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-35" viewBox="0 0 1200 320" preserveAspectRatio="none">
+              <circle cx="1060" cy="60" r="36" fill="#fef08a" opacity="0.22" />
+              <path d="M120,320 Q140,200 90,100 Q180,120 320,80 Q520,45 850,70" stroke="#78350f" stroke-width="16" fill="none" stroke-linecap="round"/>
+              <line x1="0" y1="38" x2="1200" y2="38" stroke="#b45309" stroke-width="5" />
+            </svg>
+
+            <div id="emaTreeRack" class="relative z-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pt-2">
+              <!-- Dynamically populated hanging Ema plaques -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filter & Detailed Cards List Section -->
+      <section class="space-y-4">
+        <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-4 sm:p-5 shadow-xl space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="flex flex-wrap items-center gap-1.5" role="group" aria-label="類型篩選">
+              <button type="button" data-filter-type="all" class="filter-type-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-amber-500 text-slate-950 transition">
+                全部記錄
+              </button>
+              <button type="button" data-filter-type="wish" class="filter-type-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
+                🎋 許願繪馬
+              </button>
+              <button type="button" data-filter-type="diary" class="filter-type-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
+                🌳 樹洞日記
+              </button>
+              <button type="button" data-filter-type="fulfill" class="filter-type-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
+                🙏 還願感謝
+              </button>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <label for="filterTargetSelect" class="text-xs text-slate-400">對象：</label>
+              <select id="filterTargetSelect" class="rounded-xl bg-slate-950 border border-slate-700 px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-amber-400">
+                <option value="all">全部對象</option>
+                <option value="宇宙">🌌 宇宙</option>
+                <option value="大天使">🪽 大天使</option>
+                <option value="佛主">🪷 佛主</option>
+                <option value="財神">🪙 財神</option>
+                <option value="樹洞">🌳 樹洞</option>
+                <option value="自己">🪞 自己</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80 text-xs text-slate-400">
+            <div>
+              💡 每張卡片皆可隨時切換 <strong>24h / 48h / 72h 自動刪除</strong> 或點擊 <strong>手動刪除</strong> 立即化為星塵。
+            </div>
+            <div id="activeFilterCountLabel" class="text-amber-300 font-medium">共 0 筆記錄</div>
+          </div>
+        </div>
+
+        <div id="entriesCardList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Dynamically populated cards -->
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Combined Footer Disclaimer & Backup/Storage Controls -->
+  <footer class="max-w-5xl mx-auto px-4 py-8 mt-8 border-t border-slate-800/80 text-center text-xs text-slate-400 space-y-3">
+    <p class="text-amber-300/90 font-medium leading-relaxed">
+      ⚠️ 溫馨與娛樂聲明：本應用程式僅供日常娛樂、情緒書寫與自我安慰參考，並非真正的向神明許願或宗教儀式。
+    </p>
+    <p class="text-slate-400 leading-relaxed">
+      🔒 私密本機空間：無須登錄，所有記錄 100% 僅儲存在你個人裝置的瀏覽器中，<strong class="text-slate-300">別人點開同一個網址完全看不到你的記錄</strong>（關閉網頁不會遺失，但清除瀏覽器 Cookie 或刪除 App 會清空記錄）。
+    </p>
+    <div class="flex flex-wrap items-center justify-center gap-3 pt-1">
+      <span id="storageStatusBadge" class="text-xs text-emerald-300 flex items-center gap-1.5 bg-slate-900/90 border border-slate-800 px-3 py-1 rounded-full">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        僅自己可見・本地已存 0 筆
+      </span>
+      <button type="button" id="openBackupModalBtn" class="px-3 py-1 rounded-full bg-amber-500/15 hover:bg-amber-500/25 border border-amber-400/40 text-amber-200 transition text-xs font-medium">
+        📦 備份／救援碼
+      </button>
+      <button type="button" id="openPrivacyModalBtn" class="px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white transition text-xs">
+        儲存與刪除說明
+      </button>
+    </div>
+  </footer>
+
+  <!-- Backup / Restore & Google Sites Storage Diagnostics Modal -->
+  <div id="backupModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-amber-500/40 rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-4 relative max-h-[90vh] overflow-y-auto">
+      <button type="button" id="closeBackupModalBtn" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center">
+        ✕
+      </button>
+      <h3 class="serif-title text-lg font-bold text-amber-300 flex items-center gap-2">
+        <span>📦</span>
+        <span>Google Sites 跨框架儲存狀態與私密救援碼</span>
+      </h3>
+      <p class="text-xs text-slate-300 leading-relaxed">
+        由於 Google Sites 會將嵌入程式碼放在雙層沙盒框架（<code>googleusercontent.com</code>）中，部分瀏覽器預設會限制單一儲存區。本系統已自動啟用 <strong>7 重同步儲存引擎</strong>：
+      </p>
+      <!-- Live Storage Engine Status Grid -->
+      <div id="storageDiagnosticsGrid" class="grid grid-cols-2 gap-2 text-xs bg-slate-950 p-3 rounded-2xl border border-slate-800">
+        <!-- Populated dynamically -->
+      </div>
+
+      <!-- Export / Import Code Box -->
+      <div class="space-y-2 pt-1">
+        <div class="flex items-center justify-between">
+          <label for="backupCodeTextarea" class="text-xs font-semibold text-amber-200">🔑 專屬私密保存碼（若使用無痕模式或嚴格阻擋 Cookie 的瀏覽器，可複製保存）：</label>
+          <button type="button" id="copyBackupCodeBtn" class="px-2.5 py-1 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition">
+            📋 複製保存碼
+          </button>
+        </div>
+        <textarea
+          id="backupCodeTextarea"
+          rows="3"
+          placeholder="點擊「複製保存碼」或在此貼上你先前備份的私密保存碼..."
+          class="w-full rounded-xl bg-slate-950 border border-slate-700 p-2.5 text-xs text-slate-200 font-mono focus:outline-none focus:border-amber-400"
+        ></textarea>
+        <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+          <button type="button" id="restoreBackupCodeBtn" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition">
+            📥 從上方保存碼還原記錄
+          </button>
+          <button type="button" id="downloadBackupJsonBtn" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 text-xs transition">
+            💾 下載備份檔 (.json)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detail / Inspection Modal -->
+  <div id="detailModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-amber-500/40 rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-4 relative">
+      <button type="button" id="closeDetailModalBtn" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center">
+        ✕
+      </button>
+      <div id="detailModalHeader" class="flex items-center gap-3"></div>
+      <div id="detailModalBody" class="p-4 rounded-2xl bg-slate-950/90 border border-slate-800 text-sm text-slate-100 whitespace-pre-wrap leading-relaxed"></div>
+      <div id="detailModalMeta" class="text-xs text-slate-400 space-y-1"></div>
+      <div id="detailModalBlessingBox" class="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-200 leading-relaxed"></div>
+      <div class="flex flex-wrap items-center justify-end gap-2 pt-2 border-t border-slate-800">
+        <button type="button" id="modalQuickFulfillBtn" class="hidden px-4 py-2 rounded-xl bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-semibold text-xs transition">
+          🙏 前往還願感謝
+        </button>
+        <button type="button" id="modalDeleteEntryBtn" class="px-4 py-2 rounded-xl bg-rose-950 hover:bg-rose-900 border border-rose-700 text-rose-200 font-semibold text-xs transition">
+          🗑️ 立即手動刪除（化為星塵）
+        </button>
+        <button type="button" id="modalCloseBtnSecondary" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs transition">
+          關閉
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Privacy & Storage Info Modal -->
+  <div id="privacyModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-4 relative">
+      <button type="button" id="closePrivacyModalBtn" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center">
+        ✕
+      </button>
+      <h3 class="serif-title text-lg font-bold text-amber-300 flex items-center gap-2">
+        <span>🛡️</span>
+        <span>私人本機儲存、Google Sites 相容性與娛樂聲明</span>
+      </h3>
+      <div class="space-y-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
+        <p>
+          <strong>1. 為什麼之前在 Google Sites 重新整理會消失？已如何修復？</strong><br>
+          Google Sites 的「嵌入程式碼」會將網頁放在雙層跨網域沙盒框架（<code>googleusercontent.com</code> 的 <code>srcdoc</code>）內，一般單層 <code>localStorage</code> 與 <code>SameSite=Lax</code> Cookie 會被瀏覽器阻擋或在中文字串超過 4KB 時截斷失敗。本版已升級為 <strong>上層框架 Parent LocalStorage + IndexedDB 資料庫 + CacheStorage 快取 + Base64 分段 Partitioned Cookie (`SameSite=None; Secure; Partitioned`)</strong> 多重同步寫入！
+        </p>
+        <p>
+          <strong>2. 別人點開網址絕對看不到：</strong>所有儲存空間皆綁定你個人電腦／手機的瀏覽器本機，不會上傳至公開伺服器，別人點開你的 Google Sites 網址只會看到空白頁面。
+        </p>
+        <p>
+          <strong>3. 24h / 48h / 72h 自動刪除與手動刪除：</strong>每筆記錄皆可自由選擇 24、48、72 小時自動到期刪除，或設為手動刪除。
+        </p>
+        <p class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-200">
+          <strong>4. 僅供娛樂與自我安慰參考：</strong>所有許願繪馬與草藥魔法儀式（月桂葉、海鹽、肉桂粉、羅勒葉）皆為心理抒發與儀式感體驗，並非真正的向神明許願。
+        </p>
+      </div>
+      <div class="text-right pt-2">
+        <button type="button" id="ackPrivacyModalBtn" class="px-5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-xs sm:text-sm transition">
+          我明白了
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm Clear Storage Modal -->
+  <div id="confirmClearModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-rose-500/40 rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
+      <h3 class="serif-title text-lg font-bold text-rose-300 flex items-center gap-2">
+        <span>🧹</span>
+        <span>確定要清除所有本地記錄與 Cookie 嗎？</span>
+      </h3>
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        這將同時清除 LocalStorage、IndexedDB、CacheStorage 與 Partitioned Cookie 中的所有許願繪馬、樹洞日記與還願記錄，且無法復原。
+      </p>
+      <div class="flex items-center justify-end gap-2 pt-2">
+        <button type="button" id="cancelClearStorageBtn" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm transition">
+          取消
+        </button>
+        <button type="button" id="confirmClearStorageActionBtn" class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs sm:text-sm transition">
+          確定全部清除
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var STORAGE_KEY = 'ema_sanctuary_private_entries_v2';
+      var COOKIE_PREFIX = 'ema_v3_chunk_';
+      var COOKIE_META_KEY = 'ema_v3_meta';
+      var IDB_NAME = 'EmaSanctuaryVaultDB_v3';
+      var IDB_STORE = 'vault_store';
+      var CACHE_NAME = 'ema-sanctuary-cache-v3';
+      var CACHE_URL = '/__ema_sanctuary_private_state__.json';
+
+      var WISH_FULFILL_TARGETS = [
+        { id: '宇宙', icon: '🌌', name: '宇宙', desc: '浩瀚星辰與吸引力法則，回應內在頻率', blessing: '宇宙已接收你的訊號，當你相信值得擁有，星辰便開始為你排列。' },
+        { id: '大天使', icon: '🪽', name: '大天使', desc: '溫暖光之羽翼，帶來守護、療癒與平靜', blessing: '大天使溫柔的光翼正環繞著你，請放下恐懼，安心前行。' },
+        { id: '佛主', icon: '🪷', name: '佛主', desc: '慈悲蓮座與清淨智慧，安定煩憂結善緣', blessing: '心若清淨，蓮花自開。願善念化為順遂因緣，護佑平安。' },
+        { id: '財神', icon: '🪙', name: '財神', desc: '金光聚寶與豐盛流通，助力工作與正偏財', blessing: '財源隨勤勉與敞開的心流轉而來，願你迎來豐盛與富足。' }
+      ];
+
+      var DIARY_TARGETS = [
+        { id: '樹洞', icon: '🌳', name: '樹洞', desc: '靜謐森林的古老樹洞，替你守護所有秘密', blessing: '老樹洞靜靜接住了你的話語，在這裡你不必堅強，可以安心做自己。' },
+        { id: '宇宙', icon: '🌌', name: '宇宙', desc: '向無垠夜空傾訴今日的思緒與感觸', blessing: '浩瀚夜空聽見了你的低語，每一份情緒都是生命真實的星光。' },
+        { id: '大天使', icon: '🪽', name: '大天使', desc: '在溫柔光翼下卸下疲憊，獲得無條件傾聽', blessing: '辛苦了，把今天的重擔交給溫柔的夜色吧，你已經做得很好了。' },
+        { id: '自己', icon: '🪞', name: '自己', desc: '與內在小孩和未來的自己對話，擁抱當下', blessing: '謝謝你願意停下來傾聽自己的心聲，永遠別忘了溫柔地愛自己。' }
+      ];
+
+      var RITUAL_CONFIG = {
+        ema: {
+          icon: '🪵',
+          name: '神社木繪馬掛樹',
+          shortTag: '🪵 神社繪馬',
+          stageTitle: '儀式準備台：神社檜木繪馬',
+          actionLabel: '🎐 搖響神社祈福風鈴並蓋上朱印',
+          hint: '點擊畫布或按鈕，為木繪馬蓋上祈福朱印並揚起金箔微光'
+        },
+        bayleaf: {
+          icon: '🍃',
+          name: '寫在月桂葉上燒掉 (Bay Leaf)',
+          shortTag: '🍃 月桂葉焚燒',
+          stageTitle: '魔法儀式台：月桂葉焚燒顯化 (Bay Leaf)',
+          actionLabel: '🔥 點燃月桂葉化為金光星塵',
+          hint: '將願望寫在月桂葉上，點擊火焰將葉片點燃，讓願望隨青煙與金灰升空'
+        },
+        salt: {
+          icon: '🧂',
+          name: '撒海鹽淨化儀式 (Salt)',
+          shortTag: '🧂 撒海鹽淨化',
+          stageTitle: '魔法儀式台：水晶海鹽淨化結界',
+          actionLabel: '🧂 撒下純白海鹽晶粒淨化能場',
+          hint: '點擊或滑過畫布撒下純淨海鹽，掃除負能量並守護願望'
+        },
+        cinnamon: {
+          icon: '🌰',
+          name: '撒肉桂粉豐盛儀式 (Cinnamon)',
+          shortTag: '🌰 撒肉桂粉豐盛',
+          stageTitle: '魔法儀式台：吹拂肉桂金粉顯化豐盛',
+          actionLabel: '✨ 吹拂溫暖肉桂粉吸引豐盛好運',
+          hint: '點擊或滑過畫布撒下閃耀肉桂粉，為財運與願望注入熱情能量'
+        },
+        basil: {
+          icon: '🌿',
+          name: '撒羅勒葉繁榮儀式 (Sweet Basil)',
+          shortTag: '🌿 撒羅勒葉繁榮',
+          stageTitle: '魔法儀式台：翠綠羅勒葉祝福儀式',
+          actionLabel: '🌿 撒下翠綠羅勒葉祈求順遂良緣',
+          hint: '點擊或滑過畫布撒下新鮮羅勒葉，帶來和諧、好運與平靜'
+        }
+      };
+
+      var SAMPLE_PROMPTS = {
+        wish: [
+          '希望接下來這週的專案提案一切順利，努力都能被看見，收入穩定成長！',
+          '願心中的焦慮隨月桂葉的青煙消散，夜晚能安穩入眠，迎接好消息。',
+          '祈求財運與貴人運開啟，讓我的計畫順利推進。'
+        ],
+        diary: [
+          '今天其實有點累，表面上裝作沒事，但在樹洞裡想承認自己需要休息一下。',
+          '給親愛的自己：雖然進度比想像中慢一點，但你今天依然沒有放棄，值得一個擁抱。',
+          '把心裡的委屈寫下來之後，感覺胸口鬆了一口氣，明天又是新的一天。'
+        ],
+        fulfill: [
+          '感謝宇宙與自己的努力！先前許願的事情真的順利完成了，特來奉納金色繪馬還願！',
+          '謝謝大天使的溫柔守護，原本擔心的事情平安落幕，心裡充滿感恩。',
+          '感謝財神眷顧，這個月的目標順利達成，特來還願並記錄這份喜悅！'
+        ]
+      };
+
+      var state = {
+        currentPage: 'write',
+        mode: 'wish',
+        selectedTarget: '宇宙',
+        selectedRitual: 'ema',
+        selectedMood: '🌙 平靜釋懷',
+        filterType: 'all',
+        filterTarget: 'all',
+        audioEnabled: true,
+        simulatedOffsetMs: 0,
+        ritualProgress: 0,
+        ritualCompleted: false,
+        activeModalEntryId: null,
+        updatedAt: 0,
+        entries: [],
+        storageStatus: {
+          localStorage: false,
+          parentStorage: false,
+          indexedDB: false,
+          cacheStorage: false,
+          partitionedCookie: false,
+          windowName: false,
+          pageVault: false
+        }
+      };
+
+      function getPrivateSamplePreset() {
+        var now = Date.now();
+        return [
+          { id: 'sample_wish_1', mode: 'wish', target: '宇宙', ritual: 'bayleaf', content: '', expiryHours: 48, expiresAt: now },
+          { id: 'sample_wish_2', mode: 'wish', target: '財神', ritual: 'cinnamon', content: '', expiryHours: 72, expiresAt: now },
+          { id: 'sample_diary_1', mode: 'diary', target: '樹洞', ritual: 'ema', content: '', expiryHours: 24, expiresAt: now },
+          { id: 'sample_fulfill_1', mode: 'fulfill', target: '大天使', ritual: 'ema', content: '', expiryHours: 'manual', expiresAt: null }
+        ];
+      }
+
+      // =====================================================================
+      // UTF-8 Safe Base64 Encoding / Decoding (Prevents Chinese URL-encoding 3x bloat)
+      // =====================================================================
+      function utf8ToBase64(str) {
+        try {
+          var bytes = new TextEncoder().encode(str);
+          var binString = '';
+          for (var i = 0; i < bytes.length; i++) {
+            binString += String.fromCharCode(bytes[i]);
+          }
+          return window.btoa(binString);
+        } catch (e) {
+          try {
+            return window.btoa(unescape(encodeURIComponent(str)));
+          } catch (e2) {
+            return '';
+          }
+        }
+      }
+
+      function base64ToUtf8(b64) {
+        if (!b64) return '';
+        try {
+          var binString = window.atob(b64.trim());
+          var bytes = new Uint8Array(binString.length);
+          for (var i = 0; i < binString.length; i++) {
+            bytes[i] = binString.charCodeAt(i);
+          }
+          return new TextDecoder().decode(bytes);
+        } catch (e) {
+          try {
+            return decodeURIComponent(escape(window.atob(b64.trim())));
+          } catch (e2) {
+            return '';
+          }
+        }
+      }
+
+      // =====================================================================
+      // Multi-Engine Storage System for Google Sites Iframe (`srcdoc` + `googleusercontent.com`)
+      // =====================================================================
+      function buildEnvelope() {
+        return {
+          version: 3,
+          updatedAt: state.updatedAt || Date.now(),
+          entries: state.entries
+        };
+      }
+
+      function parseEnvelope(raw) {
+        if (!raw) return null;
+        try {
+          var parsed = typeof raw === 'string' ? JSON.parse(raw) : raw;
+          if (Array.isArray(parsed)) {
+            return { version: 2, updatedAt: 1, entries: parsed };
+          }
+          if (parsed && Array.isArray(parsed.entries)) {
+            return {
+              version: parsed.version || 3,
+              updatedAt: typeof parsed.updatedAt === 'number' ? parsed.updatedAt : 1,
+              entries: parsed.entries
+            };
+          }
+        } catch (e) {}
+        return null;
+      }
+
+      // 1. LocalStorage & SessionStorage (Current Window + Google Sites Parent Outer Iframe)
+      function writeWebStorage(serialized) {
+        try {
+          window.localStorage.setItem(STORAGE_KEY, serialized);
+          window.sessionStorage.setItem(STORAGE_KEY, serialized);
+          state.storageStatus.localStorage = (window.localStorage.getItem(STORAGE_KEY) === serialized);
+        } catch (e) {
+          state.storageStatus.localStorage = false;
+        }
+        try {
+          if (window.parent && window.parent !== window && window.parent.localStorage) {
+            window.parent.localStorage.setItem(STORAGE_KEY, serialized);
+            window.parent.sessionStorage.setItem(STORAGE_KEY, serialized);
+            state.storageStatus.parentStorage = (window.parent.localStorage.getItem(STORAGE_KEY) === serialized);
+          }
+        } catch (e) {
+          state.storageStatus.parentStorage = false;
+        }
+      }
+
+      function readWebStorageCandidates() {
+        var list = [];
+        try {
+          var s1 = window.localStorage.getItem(STORAGE_KEY);
+          if (s1) {
+            state.storageStatus.localStorage = true;
+            var p1 = parseEnvelope(s1);
+            if (p1) list.push(p1);
+          }
+        } catch (e) {}
+        try {
+          if (window.parent && window.parent !== window && window.parent.localStorage) {
+            var s2 = window.parent.localStorage.getItem(STORAGE_KEY);
+            if (s2) {
+              state.storageStatus.parentStorage = true;
+              var p2 = parseEnvelope(s2);
+              if (p2) list.push(p2);
+            }
+          }
+        } catch (e) {}
+        try {
+          var s3 = window.sessionStorage.getItem(STORAGE_KEY);
+          if (s3) {
+            var p3 = parseEnvelope(s3);
+            if (p3) list.push(p3);
+          }
+        } catch (e) {}
+        return list;
+      }
+
+      // 2. Window.name & Parent Window.name Fallback
+      function writeWindowName(b64) {
+        var prefix = 'EMA_VAULT_V3:';
+        try {
+          window.name = prefix + b64;
+          state.storageStatus.windowName = true;
+        } catch (e) {}
+        try {
+          if (window.parent && window.parent !== window) {
+            window.parent.name = prefix + b64;
+          }
+        } catch (e) {}
+      }
+
+      function readWindowNameCandidates() {
+        var list = [];
+        var prefix = 'EMA_VAULT_V3:';
+        try {
+          if (window.name && window.name.indexOf(prefix) === 0) {
+            var jsonStr = base64ToUtf8(window.name.slice(prefix.length));
+            var p = parseEnvelope(jsonStr);
+            if (p) {
+              state.storageStatus.windowName = true;
+              list.push(p);
+            }
+          }
+        } catch (e) {}
+        try {
+          if (window.parent && window.parent !== window && window.parent.name && window.parent.name.indexOf(prefix) === 0) {
+            var jsonStrP = base64ToUtf8(window.parent.name.slice(prefix.length));
+            var pp = parseEnvelope(jsonStrP);
+            if (pp) {
+              state.storageStatus.windowName = true;
+              list.push(pp);
+            }
+          }
+        } catch (e) {}
+        return list;
+      }
+
+      // 3. Chunked Base64 Cookies with CHIPS (`SameSite=None; Secure; Partitioned`) for Cross-Site Google Sites Iframes
+      function setCookieEverywhere(docObj, name, val, expiresUTC) {
+        if (!docObj) return;
+        // Try Partitioned Cross-Site Cookie first (required inside Google Sites iframe!)
+        try {
+          docObj.cookie = name + '=' + val + '; expires=' + expiresUTC + '; path=/; SameSite=None; Secure; Partitioned';
+        } catch (e) {}
+        // Also try standard SameSite=None; Secure
+        try {
+          docObj.cookie = name + '=' + val + '; expires=' + expiresUTC + '; path=/; SameSite=None; Secure';
+        } catch (e) {}
+        // Also try SameSite=Lax for non-HTTPS local testing
+        try {
+          docObj.cookie = name + '=' + val + '; expires=' + expiresUTC + '; path=/; SameSite=Lax';
+        } catch (e) {}
+      }
+
+      function writeChunkedCookies(b64) {
+        var chunkSize = 2400; // Well under 4096-byte cookie limit
+        var maxChunks = 6;
+        var totalChunks = Math.min(maxChunks, Math.ceil(b64.length / chunkSize));
+        var expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toUTCString();
+        var docs = [document];
+        try {
+          if (window.parent && window.parent !== window && window.parent.document) {
+            docs.push(window.parent.document);
+          }
+        } catch (e) {}
+
+        docs.forEach(function (d) {
+          setCookieEverywhere(d, COOKIE_META_KEY, '' + totalChunks, expires);
+          for (var i = 0; i < totalChunks; i++) {
+            var slice = b64.slice(i * chunkSize, (i + 1) * chunkSize);
+            setCookieEverywhere(d, COOKIE_PREFIX + i, encodeURIComponent(slice), expires);
+          }
+        });
+
+        try {
+          state.storageStatus.partitionedCookie = document.cookie.indexOf(COOKIE_META_KEY + '=') !== -1;
+        } catch (e) {
+          state.storageStatus.partitionedCookie = false;
+        }
+      }
+
+      function readCookieFromDoc(docObj) {
+        try {
+          var c = docObj.cookie || '';
+          var metaMatch = c.match(new RegExp('(?:^|; )' + COOKIE_META_KEY + '=([^;]*)'));
+          if (!metaMatch || !metaMatch[1]) return null;
+          var count = parseInt(metaMatch[1], 10);
+          if (!count || count <= 0 || count > 10) return null;
+          var combined = '';
+          for (var i = 0; i < count; i++) {
+            var m = c.match(new RegExp('(?:^|; )' + COOKIE_PREFIX + i + '=([^;]*)'));
+            if (!m) return null;
+            combined += decodeURIComponent(m[1]);
+          }
+          var jsonStr = base64ToUtf8(combined);
+          return parseEnvelope(jsonStr);
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function readCookieCandidates() {
+        var list = [];
+        var c1 = readCookieFromDoc(document);
+        if (c1) {
+          state.storageStatus.partitionedCookie = true;
+          list.push(c1);
+        }
+        try {
+          if (window.parent && window.parent !== window && window.parent.document) {
+            var c2 = readCookieFromDoc(window.parent.document);
+            if (c2) {
+              state.storageStatus.partitionedCookie = true;
+              list.push(c2);
+            }
+          }
+        } catch (e) {}
+        return list;
+      }
+
+      // 4. IndexedDB Engine (Works in Google Sites outer/inner frame even when localStorage is restricted)
+      function getIDBFactory() {
+        try {
+          if (window.parent && window.parent !== window && window.parent.indexedDB) {
+            return window.parent.indexedDB;
+          }
+        } catch (e) {}
+        try {
+          return window.indexedDB;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function writeIndexedDB(envelope) {
+        var idb = getIDBFactory();
+        if (!idb) return;
+        try {
+          var req = idb.open(IDB_NAME, 1);
+          req.onupgradeneeded = function (ev) {
+            var db = ev.target.result;
+            if (!db.objectStoreNames.contains(IDB_STORE)) {
+              db.createObjectStore(IDB_STORE);
+            }
+          };
+          req.onsuccess = function (ev) {
+            try {
+              var db = ev.target.result;
+              var tx = db.transaction(IDB_STORE, 'readwrite');
+              var store = tx.objectStore(IDB_STORE);
+              store.put(envelope, 'current_envelope');
+              tx.oncomplete = function () {
+                state.storageStatus.indexedDB = true;
+                updateStorageBadge();
+                db.close();
+              };
+            } catch (e) {}
+          };
+        } catch (e) {}
+      }
+
+      function readIndexedDB(callback) {
+        var idb = getIDBFactory();
+        if (!idb) {
+          callback(null);
+          return;
+        }
+        try {
+          var req = idb.open(IDB_NAME, 1);
+          req.onupgradeneeded = function (ev) {
+            var db = ev.target.result;
+            if (!db.objectStoreNames.contains(IDB_STORE)) {
+              db.createObjectStore(IDB_STORE);
+            }
+          };
+          req.onsuccess = function (ev) {
+            try {
+              var db = ev.target.result;
+              var tx = db.transaction(IDB_STORE, 'readonly');
+              var store = tx.objectStore(IDB_STORE);
+              var getReq = store.get('current_envelope');
+              getReq.onsuccess = function () {
+                state.storageStatus.indexedDB = true;
+                var res = parseEnvelope(getReq.result);
+                db.close();
+                callback(res);
+              };
+              getReq.onerror = function () {
+                db.close();
+                callback(null);
+              };
+            } catch (e) {
+              callback(null);
+            }
+          };
+          req.onerror = function () {
+            callback(null);
+          };
+        } catch (e) {
+          callback(null);
+        }
+      }
+
+      // 5. CacheStorage API Engine (`window.caches` / `window.parent.caches`)
+      function getCacheStorage() {
+        try {
+          if (window.parent && window.parent !== window && window.parent.caches) {
+            return window.parent.caches;
+          }
+        } catch (e) {}
+        try {
+          return window.caches;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function writeCacheStorage(serialized) {
+        var cApi = getCacheStorage();
+        if (!cApi || typeof Response === 'undefined') return;
+        try {
+          cApi.open(CACHE_NAME).then(function (cache) {
+            var resp = new Response(serialized, {
+              headers: { 'Content-Type': 'application/json;charset=utf-8' }
+            });
+            return cache.put(CACHE_URL, resp);
+          }).then(function () {
+            state.storageStatus.cacheStorage = true;
+            updateStorageBadge();
+          }).catch(function () {});
+        } catch (e) {}
+      }
+
+      function readCacheStorage(callback) {
+        var cApi = getCacheStorage();
+        if (!cApi) {
+          callback(null);
+          return;
+        }
+        try {
+          cApi.open(CACHE_NAME).then(function (cache) {
+            return cache.match(CACHE_URL);
+          }).then(function (resp) {
+            if (!resp) {
+              callback(null);
+              return;
+            }
+            state.storageStatus.cacheStorage = true;
+            return resp.text();
+          }).then(function (txt) {
+            if (txt) {
+              callback(parseEnvelope(txt));
+            }
+          }).catch(function () {
+            callback(null);
+          });
+        } catch (e) {
+          callback(null);
+        }
+      }
+
+      // 6. Canvas PageVault Bridge (`window.pageVault`)
+      function writePageVault(envelope) {
+        try {
+          if (window.pageVault) {
+            window.pageVault.save('ema.state', envelope);
+            state.storageStatus.pageVault = true;
+          }
+        } catch (e) {}
+      }
+
+      function readPageVault(callback) {
+        try {
+          if (window.pageVault && window.pageVault.ready) {
+            window.pageVault.ready.then(function () {
+              state.storageStatus.pageVault = true;
+              return window.pageVault.load('ema.state');
+            }).then(function (val) {
+              callback(parseEnvelope(val));
+            }).catch(function () {
+              callback(null);
+            });
+          } else {
+            callback(null);
+          }
+        } catch (e) {
+          callback(null);
+        }
+      }
+
+      // --- Unified Save & Load Orchestrator ---
+      function saveEntriesToStorage() {
+        state.updatedAt = Date.now();
+        var envelope = buildEnvelope();
+        var serialized = JSON.stringify(envelope);
+        var b64 = utf8ToBase64(serialized);
+
+        writeWebStorage(serialized);
+        writeWindowName(b64);
+        writeChunkedCookies(b64);
+        writeIndexedDB(envelope);
+        writeCacheStorage(serialized);
+        writePageVault(envelope);
+
+        var backupTextarea = document.getElementById('backupCodeTextarea');
+        if (backupTextarea) {
+          backupTextarea.value = b64;
+        }
+        updateStorageBadge();
+        renderStorageDiagnostics();
+      }
+
+      function applyRecoveredEnvelopeIfNewer(candidate) {
+        if (!candidate || !Array.isArray(candidate.entries)) return false;
+        var candTime = candidate.updatedAt || 1;
+        var currTime = state.updatedAt || 0;
+        if (candTime > currTime || (state.entries.length === 0 && candidate.entries.length > 0)) {
+          state.entries = candidate.entries;
+          state.updatedAt = candTime;
+          purgeExpiredEntries();
+          renderAll();
+          // Re-sync recovered entries to synchronous stores without bumping timestamp
+          var serialized = JSON.stringify(buildEnvelope());
+          var b64 = utf8ToBase64(serialized);
+          writeWebStorage(serialized);
+          writeWindowName(b64);
+          writeChunkedCookies(b64);
+          var backupTextarea = document.getElementById('backupCodeTextarea');
+          if (backupTextarea) {
+            backupTextarea.value = b64;
+          }
+          return true;
+        }
+        return false;
+      }
+
+      function loadEntriesFromStorage() {
+        // Step 1: Collect all synchronous candidates
+        var candidates = []
+          .concat(readWebStorageCandidates())
+          .concat(readCookieCandidates())
+          .concat(readWindowNameCandidates());
+
+        for (var i = 0; i < candidates.length; i++) {
+          applyRecoveredEnvelopeIfNewer(candidates[i]);
+        }
+
+        // Step 2: Query asynchronous engines (IndexedDB, CacheStorage, PageVault)
+        readIndexedDB(function (idbEnv) {
+          if (idbEnv) applyRecoveredEnvelopeIfNewer(idbEnv);
+          updateStorageBadge();
+          renderStorageDiagnostics();
+        });
+
+        readCacheStorage(function (cacheEnv) {
+          if (cacheEnv) applyRecoveredEnvelopeIfNewer(cacheEnv);
+          updateStorageBadge();
+          renderStorageDiagnostics();
+        });
+
+        readPageVault(function (pvEnv) {
+          if (pvEnv) applyRecoveredEnvelopeIfNewer(pvEnv);
+          updateStorageBadge();
+          renderStorageDiagnostics();
+        });
+
+        updateStorageBadge();
+        renderStorageDiagnostics();
+        checkIframeStorageAccess();
+      }
+
+      function checkIframeStorageAccess() {
+        try {
+          var isEmbedded = window.self !== window.top;
+          if (isEmbedded && document.hasStorageAccess) {
+            document.hasStorageAccess().then(function (hasAccess) {
+              var banner = document.getElementById('iframeStorageWarningBanner');
+              if (!hasAccess && banner && false) {
+                banner.classList.remove('hidden');
+              }
+            }).catch(function () {});
+          }
+        } catch (e) {}
+      }
+
+      function requestIframeStoragePermission() {
+        try {
+          if (document.requestStorageAccess) {
+            document.requestStorageAccess().then(function () {
+              var banner = document.getElementById('iframeStorageWarningBanner');
+              if (banner) banner.classList.add('hidden');
+              saveEntriesToStorage();
+              loadEntriesFromStorage();
+              showToast('🔓 已成功啟用瀏覽器跨網域嵌入持久儲存權限！', 'amber');
+            }).catch(function () {
+              showToast('請點擊「📦 備份／救援碼」使用私密保存碼備份。', 'amber');
+            });
+          }
+        } catch (e) {}
+      }
+
+      function clearAllLocalData() {
+        state.entries = [];
+        state.updatedAt = Date.now();
+        state.simulatedOffsetMs = 0;
+
+        try {
+          window.localStorage.removeItem(STORAGE_KEY);
+          window.sessionStorage.removeItem(STORAGE_KEY);
+        } catch (e) {}
+        try {
+          if (window.parent && window.parent !== window && window.parent.localStorage) {
+            window.parent.localStorage.removeItem(STORAGE_KEY);
+            window.parent.sessionStorage.removeItem(STORAGE_KEY);
+          }
+        } catch (e) {}
+        try {
+          window.name = '';
+          if (window.parent && window.parent !== window) window.parent.name = '';
+        } catch (e) {}
+
+        var expired = 'Thu, 01 Jan 1970 00:00:00 GMT';
+        var docs = [document];
+        try {
+          if (window.parent && window.parent !== window && window.parent.document) {
+            docs.push(window.parent.document);
+          }
+        } catch (e) {}
+        docs.forEach(function (d) {
+          setCookieEverywhere(d, COOKIE_META_KEY, '', expired);
+          for (var i = 0; i < 6; i++) {
+            setCookieEverywhere(d, COOKIE_PREFIX + i, '', expired);
+          }
+        });
+
+        // Clear IndexedDB
+        var idb = getIDBFactory();
+        if (idb) {
+          try {
+            var req = idb.open(IDB_NAME, 1);
+            req.onsuccess = function (ev) {
+              try {
+                var db = ev.target.result;
+                var tx = db.transaction(IDB_STORE, 'readwrite');
+                tx.objectStore(IDB_STORE).clear();
+                tx.oncomplete = function () { db.close(); };
+              } catch (e) {}
+            };
+          } catch (e) {}
+        }
+
+        // Clear CacheStorage
+        var cApi = getCacheStorage();
+        if (cApi) {
+          try {
+            cApi.delete(CACHE_NAME);
+          } catch (e) {}
+        }
+
+        // Clear PageVault
+        try {
+          if (window.pageVault) {
+            window.pageVault.remove('ema.state');
+          }
+        } catch (e) {}
+
+        var backupTextarea = document.getElementById('backupCodeTextarea');
+        if (backupTextarea) backupTextarea.value = '';
+
+        updateSimulatedTimeUI();
+        updateStorageBadge();
+        renderAll();
+        showToast('🧹 已徹底清除所有儲存層（LocalStorage、IndexedDB、Cache 與 Cookie）記錄。', 'rose');
+      }
+
+      function renderStorageDiagnostics() {
+        var grid = document.getElementById('storageDiagnosticsGrid');
+        if (!grid) return;
+        var items = [
+          { label: '本機 LocalStorage', ok: state.storageStatus.localStorage },
+          { label: 'Google Sites 外層框架儲存', ok: state.storageStatus.parentStorage },
+          { label: 'IndexedDB 資料庫', ok: state.storageStatus.indexedDB },
+          { label: 'CacheStorage 持久快取', ok: state.storageStatus.cacheStorage },
+          { label: 'Partitioned 跨網域 Cookie', ok: state.storageStatus.partitionedCookie },
+          { label: '視窗記憶 (Window.name)', ok: state.storageStatus.windowName }
+        ];
+        grid.innerHTML = '';
+        items.forEach(function (it) {
+          var div = document.createElement('div');
+          div.className = 'flex items-center justify-between px-2.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800';
+          div.innerHTML =
+            '<span class="text-slate-300">' + it.label + '</span>' +
+            '<span class="' + (it.ok ? 'text-emerald-400 font-semibold' : 'text-slate-500') + '">' +
+              (it.ok ? '✅ 已啟用' : '待命') +
+            '</span>';
+          grid.appendChild(div);
+        });
+      }
+
+      function updateStorageBadge() {
+        var badge = document.getElementById('storageStatusBadge');
+        var navPill = document.getElementById('navRecordsCountPill');
+        if (badge) {
+          badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> 僅自己可見・本地已存 ' + state.entries.length + ' 筆';
+        }
+        if (navPill) {
+          navPill.textContent = '' + state.entries.length;
+        }
+      }
+
+      var owlTimer = null;
+
+      function playWelcomeOwlAnimation(customMessage) {
+        var overlay = document.getElementById('welcomeOwlOverlay');
+        var owlGroup = document.getElementById('owlAnimatedGroup');
+        var titleEl = document.getElementById('welcomeOwlTitle');
+        if (!overlay || !owlGroup) return;
+
+        if (owlTimer) {
+          clearTimeout(owlTimer);
+          owlTimer = null;
+        }
+
+        if (titleEl) {
+          titleEl.textContent = customMessage || '信使貓頭鷹已銜起信件，準備為你傳遞心意…';
+        }
+
+        overlay.classList.remove('hidden');
+        overlay.style.opacity = '1';
+
+        owlGroup.classList.remove('owl-flight-carrier');
+        void owlGroup.offsetWidth;
+        owlGroup.classList.add('owl-flight-carrier');
+
+        owlTimer = setTimeout(function () {
+          hideWelcomeOwlAnimation();
+        }, 2700);
+      }
+
+      function hideWelcomeOwlAnimation() {
+        var overlay = document.getElementById('welcomeOwlOverlay');
+        if (!overlay) return;
+        if (owlTimer) {
+          clearTimeout(owlTimer);
+          owlTimer = null;
+        }
+        overlay.style.opacity = '0';
+        setTimeout(function () {
+          overlay.classList.add('hidden');
+        }, 420);
+      }
+
+      function switchPage(pageName) {
+        state.currentPage = pageName;
+        var writeView = document.getElementById('pageViewWrite');
+        var recordsView = document.getElementById('pageViewRecords');
+        var btnWrite = document.getElementById('navPageWriteBtn');
+        var btnRecords = document.getElementById('navPageRecordsBtn');
+
+        if (pageName === 'write') {
+          writeView.classList.remove('hidden');
+          recordsView.classList.add('hidden');
+          btnWrite.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 bg-amber-500 text-slate-950 shadow';
+          btnRecords.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 text-slate-300 hover:text-white';
+          setTimeout(function () {
+            drawRitualCanvas();
+          }, 30);
+        } else {
+          writeView.classList.add('hidden');
+          recordsView.classList.remove('hidden');
+          btnWrite.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 text-slate-300 hover:text-white';
+          btnRecords.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 bg-amber-500 text-slate-950 shadow';
+          renderAll();
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      var audioCtx = null;
+      function getAudioContext() {
+        if (!state.audioEnabled) return null;
+        try {
+          if (!audioCtx) {
+            var AudioContextClass = window.AudioContext || window.webkitAudioContext;
+            if (AudioContextClass) {
+              audioCtx = new AudioContextClass();
+            }
+          }
+          if (audioCtx && audioCtx.state === 'suspended') {
+            audioCtx.resume();
+          }
+          return audioCtx;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function playSound(type) {
+        var ctx = getAudioContext();
+        if (!ctx) return;
+        try {
+          var now = ctx.currentTime;
+          if (type === 'chime') {
+            var freqs = [1046.5, 1318.5, 1567.98, 2093.0];
+            freqs.forEach(function (f, idx) {
+              var osc = ctx.createOscillator();
+              var gain = ctx.createGain();
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(f, now + idx * 0.08);
+              gain.gain.setValueAtTime(0.001, now + idx * 0.08);
+              gain.gain.exponentialRampToValueAtTime(0.08, now + idx * 0.08 + 0.03);
+              gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.08 + 1.1);
+              osc.connect(gain);
+              gain.connect(ctx.destination);
+              osc.start(now + idx * 0.08);
+              osc.stop(now + idx * 0.08 + 1.15);
+            });
+          } else if (type === 'fire') {
+            var bufferSize = ctx.sampleRate * 0.45;
+            var buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+            var data = buffer.getChannelData(0);
+            for (var i = 0; i < bufferSize; i++) {
+              data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.18));
+            }
+            var noise = ctx.createBufferSource();
+            noise.buffer = buffer;
+            var filter = ctx.createBiquadFilter();
+            filter.type = 'bandpass';
+            filter.frequency.setValueAtTime(620, now);
+            var gainNode = ctx.createGain();
+            gainNode.gain.setValueAtTime(0.18, now);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.44);
+            noise.connect(filter);
+            filter.connect(gainNode);
+            gainNode.connect(ctx.destination);
+            noise.start(now);
+          } else if (type === 'sparkle') {
+            var sFreqs = [880, 1174.66, 1760];
+            sFreqs.forEach(function (f, i) {
+              var o = ctx.createOscillator();
+              var g = ctx.createGain();
+              o.type = 'triangle';
+              o.frequency.setValueAtTime(f, now + i * 0.05);
+              g.gain.setValueAtTime(0.06, now + i * 0.05);
+              g.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.05 + 0.45);
+              o.connect(g);
+              g.connect(ctx.destination);
+              o.start(now + i * 0.05);
+              o.stop(now + i * 0.05 + 0.5);
+            });
+          } else if (type === 'bell') {
+            var bowl = ctx.createOscillator();
+            var bGain = ctx.createGain();
+            bowl.type = 'sine';
+            bowl.frequency.setValueAtTime(528, now);
+            bGain.gain.setValueAtTime(0.14, now);
+            bGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.8);
+            bowl.connect(bGain);
+            bGain.connect(ctx.destination);
+            bowl.start(now);
+            bowl.stop(now + 1.85);
+          }
+        } catch (e) {}
+      }
+
+      function getCurrentNow() {
+        return Date.now() + state.simulatedOffsetMs;
+      }
+
+      function showToast(message, tone) {
+        var container = document.getElementById('toastContainer');
+        if (!container) return;
+        var toast = document.createElement('div');
+        var borderClass = tone === 'rose' ? 'border-rose-500/60 bg-rose-950/95 text-rose-100' : 'border-amber-400/60 bg-slate-900/95 text-amber-100';
+        toast.className = 'pointer-events-auto px-4 py-3 rounded-2xl border shadow-xl text-xs sm:text-sm font-medium transition-all duration-300 ' + borderClass;
+        toast.textContent = message;
+        container.appendChild(toast);
+        setTimeout(function () {
+          toast.style.opacity = '0';
+          toast.style.transform = 'translateY(8px)';
+          setTimeout(function () {
+            if (toast.parentNode) toast.parentNode.removeChild(toast);
+          }, 300);
+        }, 3400);
+      }
+
+      function formatRemainingTime(expiresAt) {
+        if (!expiresAt) {
+          return { text: '📌 手動刪除（永久保留）', percent: 100, urgent: false };
+        }
+        var now = getCurrentNow();
+        var diff = expiresAt - now;
+        if (diff <= 0) {
+          return { text: '✨ 已到期消散', percent: 0, urgent: true };
+        }
+        var totalHours = Math.floor(diff / (1000 * 60 * 60));
+        var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        var secs = Math.floor((diff % (1000 * 60)) / 1000);
+        var pad = function (n) { return n < 10 ? '0' + n : '' + n; };
+        return {
+          text: '⏳ 剩餘 ' + totalHours + '時 ' + pad(mins) + '分 ' + pad(secs) + '秒',
+          urgent: totalHours < 6
+        };
+      }
+
+      function purgeExpiredEntries() {
+        var now = getCurrentNow();
+        var beforeCount = state.entries.length;
+        state.entries = state.entries.filter(function (entry) {
+          if (entry.expiresAt && entry.expiresAt <= now) {
+            return false;
+          }
+          return true;
+        });
+        if (state.entries.length !== beforeCount) {
+          saveEntriesToStorage();
+          renderAll();
+          playSound('sparkle');
+          showToast('✨ 有 ' + (beforeCount - state.entries.length) + ' 筆到期記錄已自動幻化為星塵並刪除。', 'amber');
+        }
+      }
+
+      function getTargetsForMode(mode) {
+        return mode === 'diary' ? DIARY_TARGETS : WISH_FULFILL_TARGETS;
+      }
+
+      function getTargetMeta(targetId) {
+        var all = WISH_FULFILL_TARGETS.concat(DIARY_TARGETS);
+        for (var i = 0; i < all.length; i++) {
+          if (all[i].id === targetId) return all[i];
+        }
+        return { id: targetId, icon: '✨', name: targetId, desc: '', blessing: '願你的心意獲得溫柔回應。' };
+      }
+
+      function renderModeUI() {
+        var tabBtns = document.querySelectorAll('.mode-tab-btn');
+        tabBtns.forEach(function (btn) {
+          var m = btn.getAttribute('data-mode');
+          if (m === state.mode) {
+            btn.className = 'mode-tab-btn py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-1.5 bg-amber-500 text-slate-950 shadow';
+          } else {
+            btn.className = 'mode-tab-btn py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-1.5 text-slate-300 hover:text-white';
+          }
+        });
+
+        var descBox = document.getElementById('modeDescriptionBox');
+        var hintSpan = document.getElementById('targetCategoryHint');
+        var ritualContainer = document.getElementById('ritualSelectorContainer');
+        var moodContainer = document.getElementById('diaryMoodContainer');
+        var fulfillLinkContainer = document.getElementById('fulfillLinkContainer');
+        var magicStageBox = document.getElementById('magicRitualStageBox');
+        var contentLabel = document.getElementById('contentInputLabel');
+        var submitBtnText = document.getElementById('submitBtnText');
+
+        var validTargets = getTargetsForMode(state.mode);
+        var stillValid = validTargets.some(function (t) { return t.id === state.selectedTarget; });
+        if (!stillValid) {
+          state.selectedTarget = validTargets[0].id;
+        }
+
+        if (state.mode === 'wish') {
+          descBox.textContent = '🎋【許願祈福】選擇向 宇宙／大天使／佛主／財神 許願，並可搭配月桂葉焚燒、撒海鹽、撒肉桂粉、撒羅勒葉等魔法儀式。';
+          hintSpan.textContent = '（可選：宇宙 / 大天使 / 佛主 / 財神）';
+          ritualContainer.classList.remove('hidden');
+          moodContainer.classList.add('hidden');
+          fulfillLinkContainer.classList.add('hidden');
+          magicStageBox.classList.remove('hidden');
+          contentLabel.textContent = '3. 寫下你的許願內容';
+          submitBtnText.textContent = '封存心願並掛上許願樹';
+        } else if (state.mode === 'diary') {
+          descBox.textContent = '🌳【樹洞日記】選擇向 樹洞／宇宙／大天使／自己 傾訴心事，無須顧慮他人眼光，並可設定 24h / 48h / 72h 自動銷毀。';
+          hintSpan.textContent = '（可選：樹洞 / 宇宙 / 大天使 / 自己）';
+          ritualContainer.classList.add('hidden');
+          moodContainer.classList.remove('hidden');
+          fulfillLinkContainer.classList.add('hidden');
+          magicStageBox.classList.add('hidden');
+          contentLabel.textContent = '3. 寫下你的日記或秘密傾訴';
+          submitBtnText.textContent = '封存樹洞日記';
+        } else {
+          descBox.textContent = '🙏【還願感謝】向 宇宙／大天使／佛主／財神 表達感謝與回向，可綁定先前的許願繪馬將其標記為「圓滿還願」。';
+          hintSpan.textContent = '（可選：宇宙 / 大天使 / 佛主 / 財神）';
+          ritualContainer.classList.add('hidden');
+          moodContainer.classList.add('hidden');
+          fulfillLinkContainer.classList.remove('hidden');
+          magicStageBox.classList.add('hidden');
+          contentLabel.textContent = '2. 寫下你的還願與感謝話語';
+          submitBtnText.textContent = '奉納金色還願繪馬';
+          populateFulfillWishDropdown();
+        }
+
+        renderTargetButtons();
+        renderRitualButtons();
+        renderMoodButtons();
+        drawRitualCanvas();
+      }
+
+      function renderTargetButtons() {
+        var grid = document.getElementById('targetSelectorGrid');
+        if (!grid) return;
+        var targets = getTargetsForMode(state.mode);
+        grid.innerHTML = '';
+        targets.forEach(function (t) {
+          var isSelected = t.id === state.selectedTarget;
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'p-3 rounded-2xl border text-left transition flex items-start gap-2.5 ' +
+            (isSelected
+              ? 'border-amber-400 bg-amber-500/20 shadow-inner'
+              : 'border-slate-700/80 bg-slate-800/50 hover:border-slate-600');
+          btn.innerHTML =
+            '<span class="text-2xl leading-none mt-0.5">' + t.icon + '</span>' +
+            '<div>' +
+              '<div class="text-xs sm:text-sm font-bold ' + (isSelected ? 'text-amber-200' : 'text-slate-200') + '">向「' + t.name + '」</div>' +
+              '<div class="text-[11px] text-slate-400 leading-snug mt-0.5">' + t.desc + '</div>' +
+            '</div>';
+          btn.addEventListener('click', function () {
+            state.selectedTarget = t.id;
+            playSound('chime');
+            renderTargetButtons();
+            drawRitualCanvas();
+          });
+          grid.appendChild(btn);
+        });
+      }
+
+      function renderRitualButtons() {
+        var btns = document.querySelectorAll('.ritual-option-btn');
+        btns.forEach(function (btn) {
+          var r = btn.getAttribute('data-ritual');
+          if (r === state.selectedRitual) {
+            btn.className = 'ritual-option-btn ' + (r === 'basil' ? 'sm:col-span-2 ' : '') + 'text-left p-2.5 rounded-xl border border-amber-400 bg-amber-500/20 transition flex items-start gap-2.5';
+          } else {
+            btn.className = 'ritual-option-btn ' + (r === 'basil' ? 'sm:col-span-2 ' : '') + 'text-left p-2.5 rounded-xl border border-slate-700 bg-slate-800/60 hover:border-slate-600 transition flex items-start gap-2.5';
+          }
+        });
+
+        var cfg = RITUAL_CONFIG[state.selectedRitual] || RITUAL_CONFIG.ema;
+        var iconEl = document.getElementById('ritualStageIcon');
+        var titleEl = document.getElementById('ritualStageTitle');
+        var actionLabelEl = document.getElementById('performRitualActionLabel');
+        var hintEl = document.getElementById('ritualCanvasOverlayHint');
+        if (iconEl) iconEl.textContent = cfg.icon;
+        if (titleEl) titleEl.textContent = cfg.stageTitle;
+        if (actionLabelEl) actionLabelEl.textContent = cfg.actionLabel;
+        if (hintEl) hintEl.textContent = '👆 ' + cfg.hint;
+      }
+
+      function renderMoodButtons() {
+        var btns = document.querySelectorAll('.mood-btn');
+        btns.forEach(function (btn) {
+          var m = btn.getAttribute('data-mood');
+          if (m === state.selectedMood) {
+            btn.className = 'mood-btn px-3 py-1.5 rounded-xl text-xs font-medium border border-indigo-400 bg-indigo-500/25 text-indigo-100';
+          } else {
+            btn.className = 'mood-btn px-3 py-1.5 rounded-xl text-xs font-medium border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-600';
+          }
+        });
+      }
+
+      function populateFulfillWishDropdown() {
+        var select = document.getElementById('linkedWishSelect');
+        if (!select) return;
+        var currentVal = select.value;
+        select.innerHTML = '<option value="">✨ 獨立還願感謝（不綁定特定舊繪馬）</option>';
+        state.entries.forEach(function (entry) {
+          if (entry.mode === 'wish' && !entry.fulfilled) {
+            var opt = document.createElement('option');
+            opt.value = entry.id;
+            var snippet = entry.content.length > 26 ? entry.content.slice(0, 26) + '...' : entry.content;
+            opt.textContent = '🎋 [向' + entry.target + '] ' + snippet;
+            select.appendChild(opt);
+          }
+        });
+        if (currentVal) {
+          select.value = currentVal;
+        }
+      }
+
+      var ritualParticles = [];
+      var ritualAnimFrame = null;
+
+      function spawnRitualParticles(x, y, count) {
+        var r = state.selectedRitual;
+        for (var i = 0; i < count; i++) {
+          var angle = Math.random() * Math.PI * 2;
+          var speed = 0.6 + Math.random() * 2.5;
+          var color = '#fbbf24';
+          var size = 3 + Math.random() * 4;
+          var vy = -1 - Math.random() * 2.2;
+          if (r === 'bayleaf') {
+            var fireColors = ['#ef4444', '#f97316', '#facc15', '#fde047'];
+            color = fireColors[Math.floor(Math.random() * fireColors.length)];
+            vy = -1.8 - Math.random() * 2.6;
+          } else if (r === 'salt') {
+            var saltColors = ['#ffffff', '#e0f2fe', '#bae6fd', '#f8fafc'];
+            color = saltColors[Math.floor(Math.random() * saltColors.length)];
+            vy = 0.8 + Math.random() * 1.8;
+          } else if (r === 'cinnamon') {
+            var cinColors = ['#d97706', '#b45309', '#f59e0b', '#fcd34d'];
+            color = cinColors[Math.floor(Math.random() * cinColors.length)];
+            vy = 0.4 + Math.random() * 1.5;
+          } else if (r === 'basil') {
+            var basilColors = ['#22c55e', '#16a34a', '#4ade80', '#86efac'];
+            color = basilColors[Math.floor(Math.random() * basilColors.length)];
+            size = 4 + Math.random() * 5;
+            vy = 0.5 + Math.random() * 1.4;
+          }
+          ritualParticles.push({
+            x: x + (Math.random() - 0.5) * 40,
+            y: y + (Math.random() - 0.5) * 20,
+            vx: Math.cos(angle) * speed * 0.6,
+            vy: vy,
+            size: size,
+            alpha: 1,
+            color: color
+          });
+        }
+      }
+
+      function triggerRitualStep(customX, customY) {
+        var canvas = document.getElementById('ritualCanvas');
+        if (!canvas) return;
+        var cx = typeof customX === 'number' ? customX : canvas.width / 2;
+        var cy = typeof customY === 'number' ? customY : canvas.height / 2;
+
+        state.ritualProgress = Math.min(100, state.ritualProgress + 34);
+        if (state.ritualProgress >= 100) {
+          state.ritualCompleted = true;
+        }
+
+        if (state.selectedRitual === 'bayleaf') {
+          playSound('fire');
+        } else if (state.selectedRitual === 'ema') {
+          playSound('chime');
+        } else {
+          playSound('sparkle');
+        }
+
+        spawnRitualParticles(cx, cy, 28);
+        updateRitualBadge();
+        startRitualAnimationLoop();
+      }
+
+      function updateRitualBadge() {
+        var badge = document.getElementById('ritualProgressBadge');
+        if (!badge) return;
+        if (state.ritualProgress >= 100) {
+          badge.textContent = '✨ 儀式能量已圓滿 (100%)';
+          badge.className = 'text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/25 text-emerald-200 border border-emerald-400/40 font-semibold';
+        } else {
+          badge.textContent = '儀式能量凝聚中：' + state.ritualProgress + '%';
+          badge.className = 'text-[11px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-200 border border-amber-500/30';
+        }
+      }
+
+      function drawRitualCanvas() {
+        var canvas = document.getElementById('ritualCanvas');
+        if (!canvas) return;
+        var parent = canvas.parentElement;
+        if (parent && parent.clientWidth > 0) {
+          canvas.width = parent.clientWidth;
+          canvas.height = parent.clientHeight;
+        }
+        var ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        var w = canvas.width;
+        var h = canvas.height;
+        ctx.clearRect(0, 0, w, h);
+
+        ctx.save();
+        ctx.strokeStyle = 'rgba(245, 158, 11, 0.18)';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(w / 2, h / 2, Math.min(w, h) * 0.36, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+
+        var wishInput = document.getElementById('entryContentInput');
+        var rawText = (wishInput && wishInput.value.trim()) ? wishInput.value.trim() : '願心中所想皆能溫柔顯化';
+        var shortText = rawText.length > 18 ? rawText.slice(0, 18) + '…' : rawText;
+
+        var r = state.selectedRitual;
+        ctx.save();
+        if (r === 'bayleaf') {
+          var burnRatio = state.ritualProgress / 100;
+          ctx.translate(w / 2, h / 2 - 6);
+          ctx.beginPath();
+          ctx.ellipse(0, 0, 115 * (1 - burnRatio * 0.45), 38 * (1 - burnRatio * 0.45), -0.08, 0, Math.PI * 2);
+          ctx.fillStyle = burnRatio >= 1 ? '#78350f' : (burnRatio > 0.4 ? '#65a30d' : '#4d7c0f');
+          ctx.fill();
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = burnRatio > 0 ? '#f59e0b' : '#84cc16';
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(-95 * (1 - burnRatio * 0.45), 6);
+          ctx.lineTo(95 * (1 - burnRatio * 0.45), -6);
+          ctx.strokeStyle = 'rgba(254, 240, 138, 0.45)';
+          ctx.stroke();
+
+          ctx.fillStyle = burnRatio >= 1 ? '#fde047' : '#fef9c3';
+          ctx.font = '600 13px "Noto Sans TC", sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(burnRatio >= 1 ? '🔥 月桂葉已化為星塵升空' : ('🍃 ' + shortText), 0, 4);
+        } else if (r === 'ema') {
+          ctx.translate(w / 2, h / 2 - 5);
+          ctx.beginPath();
+          ctx.moveTo(0, -48);
+          ctx.lineTo(95, -20);
+          ctx.lineTo(95, 42);
+          ctx.lineTo(-95, 42);
+          ctx.lineTo(-95, -20);
+          ctx.closePath();
+          ctx.fillStyle = '#e5c185';
+          ctx.fill();
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = '#92400e';
+          ctx.stroke();
+
+          ctx.fillStyle = '#3b2313';
+          ctx.font = '600 13px "Noto Serif TC", serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('【向' + state.selectedTarget + '祈願】', 0, -6);
+          ctx.font = '12px "Noto Sans TC", sans-serif';
+          ctx.fillText(shortText, 0, 18);
+
+          if (state.ritualProgress > 0) {
+            ctx.strokeStyle = '#dc2626';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(52, -16, 28, 28);
+            ctx.fillStyle = '#dc2626';
+            ctx.font = 'bold 11px serif';
+            ctx.fillText('御神印', 66, 2);
+          }
+        } else {
+          ctx.translate(w / 2, h / 2 - 6);
+          ctx.fillStyle = 'rgba(30, 41, 59, 0.85)';
+          ctx.strokeStyle = r === 'salt' ? '#bae6fd' : (r === 'cinnamon' ? '#f59e0b' : '#4ade80');
+          ctx.lineWidth = 1.8;
+          ctx.beginPath();
+          ctx.roundRect(-115, -36, 230, 72, 14);
+          ctx.fill();
+          ctx.stroke();
+
+          var herbLabel = r === 'salt' ? '🧂 海鹽淨化結界' : (r === 'cinnamon' ? '🌰 肉桂粉豐盛顯化' : '🌿 羅勒葉繁榮祝福');
+          ctx.fillStyle = '#f8fafc';
+          ctx.font = '600 13px "Noto Sans TC", sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(herbLabel + '・向' + state.selectedTarget, 0, -8);
+          ctx.fillStyle = '#fde68a';
+          ctx.font = '12px "Noto Sans TC", sans-serif';
+          ctx.fillText(shortText, 0, 16);
+        }
+        ctx.restore();
+
+        for (var i = ritualParticles.length - 1; i >= 0; i--) {
+          var p = ritualParticles[i];
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, p.alpha);
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+
+          p.x += p.vx;
+          p.y += p.vy;
+          p.alpha -= 0.022;
+          if (p.alpha <= 0) {
+            ritualParticles.splice(i, 1);
+          }
+        }
+      }
+
+      function startRitualAnimationLoop() {
+        if (ritualAnimFrame) {
+          cancelAnimationFrame(ritualAnimFrame);
+          ritualAnimFrame = null;
+        }
+        function step() {
+          drawRitualCanvas();
+          if (ritualParticles.length > 0) {
+            ritualAnimFrame = requestAnimationFrame(step);
+          } else {
+            ritualAnimFrame = null;
+          }
+        }
+        ritualAnimFrame = requestAnimationFrame(step);
+      }
+
+      function renderStats() {
+        var wishCount = 0;
+        var fulfilledCount = 0;
+        var diaryCount = 0;
+        state.entries.forEach(function (e) {
+          if (e.mode === 'wish') {
+            if (e.fulfilled) fulfilledCount++;
+            else wishCount++;
+          } else if (e.mode === 'fulfill') {
+            fulfilledCount++;
+          } else if (e.mode === 'diary') {
+            diaryCount++;
+          }
+        });
+        document.getElementById('statWishCount').textContent = '' + wishCount;
+        document.getElementById('statFulfilledCount').textContent = '' + fulfilledCount;
+        document.getElementById('statDiaryCount').textContent = '' + diaryCount;
+        document.getElementById('statTotalCount').textContent = '' + state.entries.length;
+      }
+
+      function renderEmaTreeRack() {
+        var rack = document.getElementById('emaTreeRack');
+        if (!rack) return;
+        rack.innerHTML = '';
+
+        if (state.entries.length === 0) {
+          rack.innerHTML =
+            '<div class="col-span-full py-8 text-center text-slate-400 space-y-3">' +
+              '<div class="text-3xl">🦉</div>' +
+              '<div class="text-xs sm:text-sm">你的私人許願樹目前還沒有掛牌（別人點開網址也永遠不會看到你的內容）。</div>' +
+            '</div>';
+          return;
+        }
+
+        var recent = state.entries.slice(0, 10);
+        recent.forEach(function (entry) {
+          var tMeta = getTargetMeta(entry.target);
+          var plaqueStyle = 'ema-plaque';
+          var topRibbonColor = 'bg-red-700';
+          var modeBadge = '許願';
+
+          if (entry.mode === 'diary') {
+            plaqueStyle = 'ema-plaque-diary';
+            topRibbonColor = 'bg-indigo-600';
+            modeBadge = '日記';
+          } else if (entry.mode === 'fulfill' || entry.fulfilled) {
+            plaqueStyle = 'ema-plaque-fulfilled';
+            topRibbonColor = 'bg-amber-600';
+            modeBadge = '還願';
+          }
+
+          var rem = formatRemainingTime(entry.expiresAt);
+          var wrapper = document.createElement('button');
+          wrapper.type = 'button';
+          wrapper.className = 'ema-sway group text-left focus:outline-none flex flex-col items-center';
+          wrapper.innerHTML =
+            '<div class="w-1.5 h-5 ' + topRibbonColor + ' rounded-t-full shadow"></div>' +
+            '<div class="w-full ' + plaqueStyle + ' pt-6 pb-3.5 px-3 rounded-b-xl flex flex-col justify-between min-h-[135px]">' +
+              '<div class="w-2.5 h-2.5 rounded-full bg-slate-900/70 mx-auto -mt-3 mb-1.5"></div>' +
+              '<div class="flex items-center justify-between text-[11px] font-bold opacity-85 border-b border-current/15 pb-1">' +
+                '<span>' + tMeta.icon + ' 向' + entry.target + '</span>' +
+                '<span class="px-1.5 py-0.2 rounded bg-black/10">' + modeBadge + '</span>' +
+              '</div>' +
+              '<p class="text-xs font-medium line-clamp-2 my-1.5 leading-snug">' + escapeHtml(entry.content) + '</p>' +
+              '<div class="text-[10px] opacity-80 flex items-center justify-between pt-1 border-t border-current/10">' +
+                '<span class="truncate max-w-[70px]">' + escapeHtml(entry.author || '我自己') + '</span>' +
+                '<span>' + (entry.expiresAt ? rem.text.replace('⏳ 剩餘 ', '') : '手動') + '</span>' +
+              '</div>' +
+            '</div>';
+
+          wrapper.addEventListener('click', function () {
+            openDetailModal(entry.id);
+          });
+          rack.appendChild(wrapper);
+        });
+      }
+
+      function getFilteredEntries() {
+        return state.entries.filter(function (entry) {
+          if (state.filterType !== 'all' && entry.mode !== state.filterType) {
+            return false;
+          }
+          if (state.filterTarget !== 'all' && entry.target !== state.filterTarget) {
+            return false;
+          }
+          return true;
+        });
+      }
+
+      function renderEntriesList() {
+        var listEl = document.getElementById('entriesCardList');
+        var countLabel = document.getElementById('activeFilterCountLabel');
+        if (!listEl) return;
+
+        var filtered = getFilteredEntries();
+        if (countLabel) {
+          countLabel.textContent = '共 ' + filtered.length + ' 筆私人記錄';
+        }
+
+        listEl.innerHTML = '';
+        if (filtered.length === 0) {
+          var emptyBox = document.createElement('div');
+          emptyBox.className = 'col-span-full rounded-3xl border border-slate-800 bg-slate-900/50 p-10 text-center space-y-3 text-slate-400';
+          emptyBox.innerHTML =
+            '<div class="text-3xl">🍃</div>' +
+            '<div class="text-sm font-medium text-slate-200">目前沒有任何私人記錄</div>' +
+            '<div class="text-xs">這裡只會顯示你自己寫下的許願、日記與還願，別人點開網址看不到。</div>';
+          var goWriteBtn = document.createElement('button');
+          goWriteBtn.type = 'button';
+          goWriteBtn.className = 'mt-2 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-xs transition';
+          goWriteBtn.textContent = '✍️ 前往寫下第一筆心願或日記';
+          goWriteBtn.addEventListener('click', function () {
+            switchPage('write');
+          });
+          emptyBox.appendChild(goWriteBtn);
+          listEl.appendChild(emptyBox);
+          return;
+        }
+
+        filtered.forEach(function (entry) {
+          var tMeta = getTargetMeta(entry.target);
+          var rCfg = RITUAL_CONFIG[entry.ritual] || RITUAL_CONFIG.ema;
+          var rem = formatRemainingTime(entry.expiresAt);
+
+          var cardBorder = 'border-slate-800 bg-slate-900/90';
+          var modeLabel = '🎋 許願祈福';
+          var modeBadgeStyle = 'bg-amber-500/20 text-amber-300 border-amber-500/30';
+
+          if (entry.mode === 'diary') {
+            cardBorder = 'border-indigo-900/50 bg-slate-900/90';
+            modeLabel = '🌳 樹洞日記';
+            modeBadgeStyle = 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30';
+          } else if (entry.mode === 'fulfill' || entry.fulfilled) {
+            cardBorder = 'border-yellow-500/40 bg-gradient-to-b from-slate-900 to-yellow-950/20';
+            modeLabel = entry.mode === 'fulfill' ? '🙏 還願感謝' : '🌟 已圓滿還願';
+            modeBadgeStyle = 'bg-yellow-500/25 text-yellow-200 border-yellow-400/40';
+          }
+
+          var card = document.createElement('article');
+          card.className = 'rounded-3xl border p-5 shadow-lg flex flex-col justify-between gap-4 transition hover:border-amber-500/40 ' + cardBorder;
+
+          var subTagHtml = '';
+          if (entry.mode === 'wish') {
+            subTagHtml = '<span class="px-2 py-0.5 rounded-lg bg-slate-800 text-slate-300 text-[11px]">' + rCfg.shortTag + '</span>';
+          } else if (entry.mode === 'diary' && entry.mood) {
+            subTagHtml = '<span class="px-2 py-0.5 rounded-lg bg-slate-800 text-indigo-200 text-[11px]">' + escapeHtml(entry.mood) + '</span>';
+          }
+
+          var currentExpiryValue = entry.expiryHours ? '' + entry.expiryHours : 'manual';
+
+          card.innerHTML =
+            '<div class="space-y-3">' +
+              '<div class="flex flex-wrap items-center justify-between gap-2">' +
+                '<div class="flex items-center gap-2">' +
+                  '<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold border ' + modeBadgeStyle + '">' + modeLabel + '</span>' +
+                  '<span class="text-xs font-bold text-slate-200 flex items-center gap-1">' + tMeta.icon + ' 向「' + entry.target + '」</span>' +
+                '</div>' +
+                subTagHtml +
+              '</div>' +
+              '<p class="text-sm text-slate-100 whitespace-pre-wrap leading-relaxed cursor-pointer hover:text-amber-100" data-action="inspect">' +
+                escapeHtml(entry.content) +
+              '</p>' +
+            '</div>' +
+            '<div class="space-y-3 pt-3 border-t border-slate-800/80">' +
+              '<div class="flex flex-wrap items-center justify-between gap-2 text-xs">' +
+                '<span class="text-slate-400">署名：<strong class="text-slate-200">' + escapeHtml(entry.author || '我自己') + '</strong></span>' +
+                '<span class="entry-countdown-badge font-medium ' + (rem.urgent ? 'text-rose-300' : 'text-amber-300') + '" data-entry-id="' + entry.id + '">' +
+                  rem.text +
+                '</span>' +
+              '</div>' +
+              '<div class="flex flex-wrap items-center justify-between gap-2">' +
+                '<div class="flex items-center gap-1.5">' +
+                  '<label class="text-[11px] text-slate-400">時限：</label>' +
+                  '<select data-action="change-expiry" class="rounded-lg bg-slate-950 border border-slate-700 px-2 py-1 text-[11px] text-slate-200 focus:outline-none focus:border-amber-400">' +
+                    '<option value="24" ' + (currentExpiryValue === '24' ? 'selected' : '') + '>24小時刪除</option>' +
+                    '<option value="48" ' + (currentExpiryValue === '48' ? 'selected' : '') + '>48小時刪除</option>' +
+                    '<option value="72" ' + (currentExpiryValue === '72' ? 'selected' : '') + '>72小時刪除</option>' +
+                    '<option value="manual" ' + (currentExpiryValue === 'manual' ? 'selected' : '') + '>手動刪除</option>' +
+                  '</select>' +
+                '</div>' +
+                '<div class="flex items-center gap-1.5">' +
+                  (entry.mode === 'wish' && !entry.fulfilled
+                    ? '<button type="button" data-action="fulfill-wish" class="px-2.5 py-1 rounded-lg bg-yellow-500/20 hover:bg-yellow-500/30 border border-yellow-500/40 text-yellow-200 text-xs font-medium transition">🙏 還願</button>'
+                    : '') +
+                  '<button type="button" data-action="inspect" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs transition">詳情</button>' +
+                  '<button type="button" data-action="delete" class="px-2.5 py-1 rounded-lg bg-rose-950/80 hover:bg-rose-900 border border-rose-700/50 text-rose-200 text-xs transition">🗑️ 刪除</button>' +
+                '</div>' +
+              '</div>' +
+            '</div>';
+
+          var inspectEls = card.querySelectorAll('[data-action="inspect"]');
+          inspectEls.forEach(function (el) {
+            el.addEventListener('click', function () {
+              openDetailModal(entry.id);
+            });
+          });
+
+          var expirySel = card.querySelector('[data-action="change-expiry"]');
+          if (expirySel) {
+            expirySel.addEventListener('change', function (e) {
+              updateEntryExpiry(entry.id, e.target.value);
+            });
+          }
+
+          var fulfillBtn = card.querySelector('[data-action="fulfill-wish"]');
+          if (fulfillBtn) {
+            fulfillBtn.addEventListener('click', function () {
+              jumpToFulfillWish(entry.id);
+            });
+          }
+
+          var deleteBtn = card.querySelector('[data-action="delete"]');
+          if (deleteBtn) {
+            deleteBtn.addEventListener('click', function () {
+              deleteEntryById(entry.id);
+            });
+          }
+
+          listEl.appendChild(card);
+        });
+      }
+
+      function updateEntryExpiry(entryId, newVal) {
+        var now = getCurrentNow();
+        for (var i = 0; i < state.entries.length; i++) {
+          if (state.entries[i].id === entryId) {
+            if (newVal === 'manual') {
+              state.entries[i].expiryHours = 'manual';
+              state.entries[i].expiresAt = null;
+              showToast('📌 已改為「手動刪除」，此記錄將保留至您主動刪除或清除 Cookie。', 'amber');
+            } else {
+              var hrs = parseInt(newVal, 10) || 48;
+              state.entries[i].expiryHours = hrs;
+              state.entries[i].expiresAt = now + hrs * 3600 * 1000;
+              showToast('⏳ 已重設為 ' + hrs + ' 小時後自動刪除。', 'amber');
+            }
+            break;
+          }
+        }
+        saveEntriesToStorage();
+        renderAll();
+      }
+
+      function deleteEntryById(entryId) {
+        state.entries = state.entries.filter(function (e) { return e.id !== entryId; });
+        saveEntriesToStorage();
+        playSound('sparkle');
+        renderAll();
+        showToast('✨ 該筆記錄已化為星塵並從本機刪除。', 'rose');
+      }
+
+      function jumpToFulfillWish(wishId) {
+        var targetWish = null;
+        for (var i = 0; i < state.entries.length; i++) {
+          if (state.entries[i].id === wishId) {
+            targetWish = state.entries[i];
+            break;
+          }
+        }
+        state.mode = 'fulfill';
+        if (targetWish) {
+          state.selectedTarget = targetWish.target;
+        }
+        switchPage('write');
+        renderModeUI();
+        var select = document.getElementById('linkedWishSelect');
+        if (select && targetWish) {
+          select.value = targetWish.id;
+        }
+        var textarea = document.getElementById('entryContentInput');
+        if (textarea && targetWish) {
+          textarea.value = '感謝' + targetWish.target + '的護佑！先前許下的心願「' + targetWish.content.slice(0, 24) + '…」已經順利圓滿，特來奉納繪馬還願！';
+          textarea.focus();
+        }
+        playSound('bell');
+        showToast('🙏 已切換至書寫頁「還願感謝」模式並帶入原許願繪馬！', 'amber');
+      }
+
+      function openDetailModal(entryId) {
+        var entry = null;
+        for (var i = 0; i < state.entries.length; i++) {
+          if (state.entries[i].id === entryId) {
+            entry = state.entries[i];
+            break;
+          }
+        }
+        if (!entry) return;
+        state.activeModalEntryId = entry.id;
+
+        var tMeta = getTargetMeta(entry.target);
+        var rCfg = RITUAL_CONFIG[entry.ritual] || RITUAL_CONFIG.ema;
+        var rem = formatRemainingTime(entry.expiresAt);
+
+        var headerEl = document.getElementById('detailModalHeader');
+        var bodyEl = document.getElementById('detailModalBody');
+        var metaEl = document.getElementById('detailModalMeta');
+        var blessingEl = document.getElementById('detailModalBlessingBox');
+        var quickFulfillBtn = document.getElementById('modalQuickFulfillBtn');
+
+        var typeTitle = entry.mode === 'wish' ? '許願繪馬' : (entry.mode === 'diary' ? '樹洞日記' : '還願感謝繪馬');
+        headerEl.innerHTML =
+          '<div class="w-11 h-11 rounded-2xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-2xl">' + tMeta.icon + '</div>' +
+          '<div>' +
+            '<h3 class="serif-title text-lg font-bold text-amber-200">向「' + entry.target + '」的' + typeTitle + '</h3>' +
+            '<div class="text-xs text-slate-400">署名：' + escapeHtml(entry.author || '我自己') + '（僅自己可見）</div>' +
+          '</div>';
+
+        bodyEl.textContent = entry.content;
+
+        var extraInfo = entry.mode === 'wish'
+          ? '許願儀式：' + rCfg.name
+          : (entry.mode === 'diary' ? '心情印記：' + (entry.mood || '平靜') : '狀態：🌟 已圓滿奉納還願');
+
+        metaEl.innerHTML =
+          '<div>' + extraInfo + '</div>' +
+          '<div class="text-amber-300 font-medium">' + rem.text + '</div>';
+
+        blessingEl.innerHTML = '💫 <strong>來自「' + tMeta.name + '」的溫柔回音（僅供安慰參考）：</strong><br>' + tMeta.blessing;
+
+        if (entry.mode === 'wish' && !entry.fulfilled) {
+          quickFulfillBtn.classList.remove('hidden');
+        } else {
+          quickFulfillBtn.classList.add('hidden');
+        }
+
+        document.getElementById('detailModal').classList.remove('hidden');
+        playSound('chime');
+      }
+
+      function closeDetailModal() {
+        document.getElementById('detailModal').classList.add('hidden');
+        state.activeModalEntryId = null;
+      }
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function updateSimulatedTimeUI() {
+        var indicator = document.getElementById('simulatedTimeIndicator');
+        var resetBtn = document.getElementById('resetTimeOffsetBtn');
+        if (!indicator || !resetBtn) return;
+        if (state.simulatedOffsetMs > 0) {
+          var hrs = Math.round(state.simulatedOffsetMs / (3600 * 1000));
+          indicator.textContent = '（目前已快轉 +' + hrs + ' 小時）';
+          indicator.classList.remove('hidden');
+          resetBtn.classList.remove('hidden');
+        } else {
+          indicator.classList.add('hidden');
+          resetBtn.classList.add('hidden');
+        }
+      }
+
+      function renderAll() {
+        updateStorageBadge();
+        renderStats();
+        renderEmaTreeRack();
+        renderEntriesList();
+        if (state.mode === 'fulfill') {
+          populateFulfillWishDropdown();
+        }
+      }
+
+      function tickCountdowns() {
+        purgeExpiredEntries();
+        var badges = document.querySelectorAll('.entry-countdown-badge');
+        badges.forEach(function (b) {
+          var id = b.getAttribute('data-entry-id');
+          for (var i = 0; i < state.entries.length; i++) {
+            if (state.entries[i].id === id) {
+              var rem = formatRemainingTime(state.entries[i].expiresAt);
+              b.textContent = rem.text;
+              break;
+            }
+          }
+        });
+      }
+
+      function openBackupModal() {
+        var serialized = JSON.stringify(buildEnvelope());
+        var b64 = utf8ToBase64(serialized);
+        var textarea = document.getElementById('backupCodeTextarea');
+        if (textarea) {
+          textarea.value = state.entries.length > 0 ? b64 : '';
+        }
+        renderStorageDiagnostics();
+        document.getElementById('backupModal').classList.remove('hidden');
+      }
+
+      function initApp() {
+        loadEntriesFromStorage();
+        renderModeUI();
+        renderAll();
+
+        playWelcomeOwlAnimation('信使貓頭鷹正銜著信件飛向星空…');
+
+        
+
+        document.getElementById('skipWelcomeOwlBtn').addEventListener('click', function () {
+          hideWelcomeOwlAnimation();
+        });
+        document.getElementById('replayOwlBtn').addEventListener('click', function () {
+          playWelcomeOwlAnimation('信使貓頭鷹正銜著你的信件飛向夜空…');
+        });
+
+        document.getElementById('navPageWriteBtn').addEventListener('click', function () {
+          switchPage('write');
+        });
+        document.getElementById('navPageRecordsBtn').addEventListener('click', function () {
+          switchPage('records');
+        });
+        document.getElementById('quickGoRecordsBtn').addEventListener('click', function () {
+          switchPage('records');
+        });
+        document.getElementById('backToWritePageBtn').addEventListener('click', function () {
+          switchPage('write');
+        });
+
+        var grantBtn = document.getElementById('grantStorageAccessBtn');
+        if (grantBtn) {
+          grantBtn.addEventListener('click', function () {
+            requestIframeStoragePermission();
+          });
+        }
+
+        // Backup & Restore Modal Listeners
+        document.getElementById('openBackupModalBtn').addEventListener('click', openBackupModal);
+        document.getElementById('recordsBackupBtn').addEventListener('click', openBackupModal);
+        document.getElementById('closeBackupModalBtn').addEventListener('click', function () {
+          document.getElementById('backupModal').classList.add('hidden');
+        });
+
+        document.getElementById('copyBackupCodeBtn').addEventListener('click', function () {
+          var textarea = document.getElementById('backupCodeTextarea');
+          if (!textarea || !textarea.value.trim()) {
+            showToast('目前尚無記錄可複製喔！', 'rose');
+            return;
+          }
+          textarea.select();
+          try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(textarea.value.trim()).then(function () {
+                showToast('📋 已複製專屬私密保存碼！', 'amber');
+              }).catch(function () {
+                document.execCommand('copy');
+                showToast('📋 已複製專屬私密保存碼！', 'amber');
+              });
+            } else {
+              document.execCommand('copy');
+              showToast('📋 已複製專屬私密保存碼！', 'amber');
+            }
+          } catch (e) {
+            document.execCommand('copy');
+            showToast('📋 已複製專屬私密保存碼！', 'amber');
+          }
+        });
+
+        document.getElementById('restoreBackupCodeBtn').addEventListener('click', function () {
+          var textarea = document.getElementById('backupCodeTextarea');
+          if (!textarea || !textarea.value.trim()) {
+            showToast('請先在欄位中貼上私密保存碼！', 'rose');
+            return;
+          }
+          var decoded = base64ToUtf8(textarea.value.trim());
+          var env = parseEnvelope(decoded);
+          if (!env || !Array.isArray(env.entries)) {
+            showToast('保存碼格式不正確，請確認是否完整複製。', 'rose');
+            return;
+          }
+          state.entries = env.entries;
+          saveEntriesToStorage();
+          renderAll();
+          document.getElementById('backupModal').classList.add('hidden');
+          switchPage('records');
+          playSound('bell');
+          showToast('🎉 已成功還原 ' + state.entries.length + ' 筆私人記錄！', 'amber');
+        });
+
+        document.getElementById('downloadBackupJsonBtn').addEventListener('click', function () {
+          if (state.entries.length === 0) {
+            showToast('目前沒有記錄可供下載備份喔！', 'rose');
+            return;
+          }
+          try {
+            var blob = new Blob([JSON.stringify(buildEnvelope(), null, 2)], { type: 'application/json' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'ema_private_backup.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('💾 已下載私密備份檔 (ema_private_backup.json)', 'amber');
+          } catch (e) {
+            showToast('下載失敗，請使用上方「複製保存碼」功能。', 'rose');
+          }
+        });
+
+        var tabBtns = document.querySelectorAll('.mode-tab-btn');
+        tabBtns.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            state.mode = btn.getAttribute('data-mode');
+            state.ritualProgress = 0;
+            state.ritualCompleted = false;
+            updateRitualBadge();
+            playSound('chime');
+            renderModeUI();
+          });
+        });
+
+        var ritualBtns = document.querySelectorAll('.ritual-option-btn');
+        ritualBtns.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            state.selectedRitual = btn.getAttribute('data-ritual');
+            state.ritualProgress = 0;
+            state.ritualCompleted = false;
+            updateRitualBadge();
+            renderRitualButtons();
+            triggerRitualStep();
+          });
+        });
+
+        var moodBtns = document.querySelectorAll('.mood-btn');
+        moodBtns.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            state.selectedMood = btn.getAttribute('data-mood');
+            renderMoodButtons();
+          });
+        });
+
+        var inspireBtn = document.getElementById('fillPromptInspirationBtn');
+        if (inspireBtn) {
+          inspireBtn.addEventListener('click', function () {
+            var pool = SAMPLE_PROMPTS[state.mode] || SAMPLE_PROMPTS.wish;
+            var pick = pool[Math.floor(Math.random() * pool.length)];
+            var input = document.getElementById('entryContentInput');
+            if (input) {
+              input.value = pick;
+              drawRitualCanvas();
+            }
+          });
+        }
+
+        var contentInput = document.getElementById('entryContentInput');
+        if (contentInput) {
+          contentInput.addEventListener('input', function () {
+            if (state.mode === 'wish') {
+              drawRitualCanvas();
+            }
+          });
+        }
+
+        var canvas = document.getElementById('ritualCanvas');
+        if (canvas) {
+          canvas.addEventListener('click', function (e) {
+            var rect = canvas.getBoundingClientRect();
+            triggerRitualStep(e.clientX - rect.left, e.clientY - rect.top);
+          });
+        }
+
+        var performRitualBtn = document.getElementById('performRitualActionBtn');
+        if (performRitualBtn) {
+          performRitualBtn.addEventListener('click', function () {
+            triggerRitualStep();
+          });
+        }
+
+        var resetRitualBtn = document.getElementById('resetRitualCanvasBtn');
+        if (resetRitualBtn) {
+          resetRitualBtn.addEventListener('click', function () {
+            state.ritualProgress = 0;
+            state.ritualCompleted = false;
+            ritualParticles = [];
+            updateRitualBadge();
+            drawRitualCanvas();
+          });
+        }
+
+        var form = document.getElementById('entryForm');
+        if (form) {
+          form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var contentEl = document.getElementById('entryContentInput');
+            var authorEl = document.getElementById('entryAuthorInput');
+            var expiryEl = document.getElementById('expirySelect');
+            var linkedWishEl = document.getElementById('linkedWishSelect');
+
+            var text = contentEl.value.trim();
+            if (!text) {
+              showToast('請先寫下你的心願、日記或感謝內容喔！', 'rose');
+              return;
+            }
+
+            var now = getCurrentNow();
+            var expVal = expiryEl.value;
+            var expiryHours = expVal === 'manual' ? 'manual' : parseInt(expVal, 10);
+            var expiresAt = expVal === 'manual' ? null : (now + expiryHours * 3600 * 1000);
+
+            var linkedId = (state.mode === 'fulfill' && linkedWishEl) ? linkedWishEl.value : '';
+            if (linkedId) {
+              for (var i = 0; i < state.entries.length; i++) {
+                if (state.entries[i].id === linkedId) {
+                  state.entries[i].fulfilled = true;
+                  break;
+                }
+              }
+            }
+
+            var newEntry = {
+              id: 'entry_' + Date.now() + '_' + Math.floor(Math.random() * 10000),
+              mode: state.mode,
+              target: state.selectedTarget,
+              ritual: state.mode === 'wish' ? state.selectedRitual : 'ema',
+              mood: state.mode === 'diary' ? state.selectedMood : '',
+              content: text,
+              author: authorEl.value.trim() || '我自己',
+              createdAt: now,
+              expiryHours: expiryHours,
+              expiresAt: expiresAt,
+              fulfilled: state.mode === 'fulfill',
+              linkedWishId: linkedId
+            };
+
+            state.entries.unshift(newEntry);
+            saveEntriesToStorage();
+
+            if (state.mode === 'fulfill') {
+              playSound('bell');
+            } else if (state.mode === 'wish' && state.selectedRitual === 'bayleaf') {
+              playSound('fire');
+            } else {
+              playSound('chime');
+            }
+
+            contentEl.value = '';
+            state.ritualProgress = 0;
+            state.ritualCompleted = false;
+            updateRitualBadge();
+            drawRitualCanvas();
+            renderAll();
+
+            var tMeta = getTargetMeta(newEntry.target);
+            switchPage('records');
+            showToast('🦉 貓頭鷹已將你向「' + tMeta.name + '」的心意送達私人許願樹！', 'amber');
+          });
+        }
+
+        var filterBtns = document.querySelectorAll('.filter-type-btn');
+        filterBtns.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            state.filterType = btn.getAttribute('data-filter-type');
+            filterBtns.forEach(function (b) {
+              if (b.getAttribute('data-filter-type') === state.filterType) {
+                b.className = 'filter-type-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-amber-500 text-slate-950 transition';
+              } else {
+                b.className = 'filter-type-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
+              }
+            });
+            renderEntriesList();
+          });
+        });
+
+        var filterTargetSelect = document.getElementById('filterTargetSelect');
+        if (filterTargetSelect) {
+          filterTargetSelect.addEventListener('change', function (e) {
+            state.filterTarget = e.target.value;
+            renderEntriesList();
+          });
+        }
+
+        var audioBtn = document.getElementById('toggleAudioBtn');
+        if (audioBtn) {
+          audioBtn.addEventListener('click', function () {
+            state.audioEnabled = !state.audioEnabled;
+            document.getElementById('audioIcon').textContent = state.audioEnabled ? '🔔' : '🔕';
+            document.getElementById('audioLabel').textContent = state.audioEnabled ? '療癒音效：開啟' : '療癒音效：靜音';
+            if (state.audioEnabled) playSound('chime');
+          });
+        }
+
+        var ffBtn = document.getElementById('fastForwardBtn');
+        if (ffBtn) {
+          ffBtn.addEventListener('click', function () {
+            state.simulatedOffsetMs += 12 * 3600 * 1000;
+            updateSimulatedTimeUI();
+            purgeExpiredEntries();
+            renderAll();
+            showToast('⏩ 已模擬快轉 12 小時，可觀察 24h / 48h / 72h 倒數變化與到期自動銷毀。', 'amber');
+          });
+        }
+
+        var resetTimeBtn = document.getElementById('resetTimeOffsetBtn');
+        if (resetTimeBtn) {
+          resetTimeBtn.addEventListener('click', function () {
+            state.simulatedOffsetMs = 0;
+            updateSimulatedTimeUI();
+            renderAll();
+            showToast('⏱️ 已恢復為真實當下時間。', 'amber');
+          });
+        }
+
+        document.getElementById('openPrivacyModalBtn').addEventListener('click', function () {
+          document.getElementById('privacyModal').classList.remove('hidden');
+        });
+        document.getElementById('closePrivacyModalBtn').addEventListener('click', function () {
+          document.getElementById('privacyModal').classList.add('hidden');
+        });
+        document.getElementById('ackPrivacyModalBtn').addEventListener('click', function () {
+          document.getElementById('privacyModal').classList.add('hidden');
+        });
+
+        document.getElementById('closeDetailModalBtn').addEventListener('click', closeDetailModal);
+        document.getElementById('modalCloseBtnSecondary').addEventListener('click', closeDetailModal);
+
+        document.getElementById('modalDeleteEntryBtn').addEventListener('click', function () {
+          if (state.activeModalEntryId) {
+            var idToDel = state.activeModalEntryId;
+            closeDetailModal();
+            deleteEntryById(idToDel);
+          }
+        });
+
+        document.getElementById('modalQuickFulfillBtn').addEventListener('click', function () {
+          if (state.activeModalEntryId) {
+            var idToFulfill = state.activeModalEntryId;
+            closeDetailModal();
+            jumpToFulfillWish(idToFulfill);
+          }
+        });
+
+        document.getElementById('clearAllStorageBtn').addEventListener('click', function () {
+          document.getElementById('confirmClearModal').classList.remove('hidden');
+        });
+        document.getElementById('cancelClearStorageBtn').addEventListener('click', function () {
+          document.getElementById('confirmClearModal').classList.add('hidden');
+        });
+        document.getElementById('confirmClearStorageActionBtn').addEventListener('click', function () {
+          document.getElementById('confirmClearModal').classList.add('hidden');
+          clearAllLocalData();
+        });
+
+        window.addEventListener('resize', function () {
+          drawRitualCanvas();
+        });
+
+        setInterval(tickCountdowns, 1000);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initApp);
+      } else {
+        initApp();
+      }
+    })();
+  </script>
+</body>
+</html>
