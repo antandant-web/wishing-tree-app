@@ -495,7 +495,7 @@
         </div>
 
         <div class="flex flex-wrap items-center gap-2">
-          <button type="button" id="recordsBackupBtn" class="px-3 py-1.5 rounded-xl bg-emerald-950/80 hover:bg-emerald-900/80 border border-emerald-700/50 text-xs text-emerald-200 flex items-center gap-1.5 transition">
+          <button type="button" id="recordsBackupBtn" class="hidden px-3 py-1.5 rounded-xl bg-emerald-950/80 hover:bg-emerald-900/80 border border-emerald-700/50 text-xs text-emerald-200 items-center gap-1.5 transition">
             <span>📦</span>
             <span>備份／還原記錄</span>
           </button>
@@ -628,7 +628,7 @@
         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
         僅自己可見・本地已存 0 筆
       </span>
-      <button type="button" id="openBackupModalBtn" class="px-3 py-1 rounded-full bg-amber-500/15 hover:bg-amber-500/25 border border-amber-400/40 text-amber-200 transition text-xs font-medium">
+      <button type="button" id="openBackupModalBtn" class="hidden px-3 py-1 rounded-full bg-amber-500/15 hover:bg-amber-500/25 border border-amber-400/40 text-amber-200 transition text-xs font-medium">
         📦 備份／救援碼
       </button>
       <button type="button" id="openPrivacyModalBtn" class="px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white transition text-xs">
@@ -717,8 +717,8 @@
       </h3>
       <div class="space-y-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
         <p>
-          <strong>1. 為什麼之前在 Google Sites 重新整理會消失？已如何修復？</strong><br>
-          Google Sites 的「嵌入程式碼」會將網頁放在雙層跨網域沙盒框架（<code>googleusercontent.com</code> 的 <code>srcdoc</code>）內，一般單層 <code>localStorage</code> 與 <code>SameSite=Lax</code> Cookie 會被瀏覽器阻擋或在中文字串超過 4KB 時截斷失敗。本版已升級為 <strong>上層框架 Parent LocalStorage + IndexedDB 資料庫 + CacheStorage 快取 + Base64 分段 Partitioned Cookie (`SameSite=None; Secure; Partitioned`)</strong> 多重同步寫入！
+          <strong>1. 免登錄、關閉網頁不遺失、清除 Cookie 即銷毀：</strong><br>
+          所有記錄皆自動保存在你的瀏覽器本機（LocalStorage、IndexedDB 與 Cookie）中。日常關閉分頁、重新整理或重開機都會完整保留；但當你主動清除瀏覽器 Cookie 與網站資料、刪除應用程式，或點擊「🧹 清除本地記錄」時，所有資料就會徹底抹除。
         </p>
         <p>
           <strong>2. 別人點開網址絕對看不到：</strong>所有儲存空間皆綁定你個人電腦／手機的瀏覽器本機，不會上傳至公開伺服器，別人點開你的 Google Sites 網址只會看到空白頁面。
